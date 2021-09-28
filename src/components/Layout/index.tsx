@@ -13,6 +13,7 @@ import { Sidebar } from '../Sidebar';
 import React from 'react';
 //data
 import { menu } from '../Sidebar/data';
+import * as Styles from './styles';
 
 type Props = GridProps & {
   headerProps?: BoxProps;
@@ -22,17 +23,7 @@ type Props = GridProps & {
 export function Layout({ headerProps, children }: Props) {
   const isTablet = useMediaQuery(useTheme().breakpoints.down('md'));
   return (
-    <Grid
-      id="layout"
-      display="grid"
-      height="100vh"
-      width="100%"
-      minWidth={(theme) => theme.breakpoints.values.sm}
-      bgcolor="background.paper"
-      gridTemplateRows="1fr"
-      gridTemplateColumns="auto 1fr"
-      gridTemplateAreas="'sidebar main'"
-    >
+    <Grid id="layout" sx={Styles.container}>
       <Sidebar
         gridArea="sidebar"
         menu={menu}
