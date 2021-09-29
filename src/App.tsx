@@ -5,8 +5,8 @@ import { Routes } from './Routes';
 //resources
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { theme } from './theme';
-import { Layout } from './components/Layout';
+import { theme } from './Theme';
+import { Layout } from './Components/Layout';
 
 export function App() {
   return (
