@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 //core-components
 import { Home, Jobs, NotFound } from '../Pages';
 //route-paths
-import { route } from './data';
+import { route } from './paths';
 
 export function Routes() {
   return (
