@@ -2,11 +2,11 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
 //core-components
 import { Routes } from './Routes';
+import { Layout } from './Components/Layout';
 //resources
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { theme } from './Theme';
-import { Layout } from './Components/Layout';
 
 export function App() {
   return (
