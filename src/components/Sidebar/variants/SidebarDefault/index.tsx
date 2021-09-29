@@ -8,6 +8,7 @@ import React from 'react';
 import * as Styles from './styles';
 //entities
 import { Menu } from '../../entities/menu';
+import { Link } from 'react-router-dom';
 
 type Props = BoxProps & {
   menu: Menu[];
@@ -16,7 +17,9 @@ type Props = BoxProps & {
 export function SidebarDefault({ menu, ...props }: Props) {
   return (
     <Box {...Styles.container} {...props}>
-      <Logo mb={3} mt={1} />
+      <Link to="">
+        <Logo mb={3} mt={1} />
+      </Link>
       <Stack spacing={2}>
         {menu.map((m) => (
           <MenuGroup key={m.id} menu={m} />

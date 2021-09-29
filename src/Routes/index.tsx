@@ -5,12 +5,14 @@ import { Route, Switch } from 'react-router-dom';
 import { Home } from '../Pages/Home';
 import { Jobs } from '../Pages/Jobs';
 import { NotFound } from '../Pages/NotFound';
+//route-paths
+import { route } from './data';
 
 export function Routes() {
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/jobs" component={Jobs} />
+      <Route exact path={route.root} component={Home} />
+      <Route exact path={route.jobs} component={Jobs} />
       <Route component={NotFound} />
     </Switch>
   );
