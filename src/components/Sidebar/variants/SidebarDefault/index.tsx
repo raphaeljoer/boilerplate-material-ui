@@ -2,10 +2,10 @@
 import { Stack, Box, BoxProps } from '@mui/material';
 //core-components
 import { Logo } from '../../../Logo';
-import { MenuGroup } from './components/MenuGroup';
+import { MenuGroup } from './components';
 //resources
-import * as Styles from './styles';
 import React from 'react';
+import * as Styles from './styles';
 //entities
 import { Menu } from '../../entities/menu';
 

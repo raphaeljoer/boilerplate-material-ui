@@ -1,7 +1,12 @@
-import React from 'react';
+//material-ui
 import { Stack, Box, BoxProps } from '@mui/material';
-import { Menu } from '../../entities/menu';
+//core-components
 import { MenuGroup } from './components/MenuGroup';
+//resources
+import React from 'react';
+//entities
+import { Menu } from '../../entities/menu';
+//styles
 import * as Styles from './styles';
 
 type Props = BoxProps & {

@@ -9,13 +9,13 @@ const recruiterMenuItems: MenuItem[] = [
   {
     id: '69de2aac-9ef1-447f-9180-6f7438bad63b',
     label: 'Job Requisitions',
-    path: '/job',
+    path: '/jobs',
     icon: RiFolderOpenLine
   },
   {
     id: 'e04fd62f-29ce-4fe3-9834-e16c779e78ee',
     label: 'Applicants',
-    path: '/applicants',
+    path: '/',
     icon: RiGroupLine
   },
   {

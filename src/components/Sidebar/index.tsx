@@ -1,8 +1,7 @@
 //material-ui
 import { BoxProps } from '@mui/material';
 //core-components
-import { SidebarDefault } from './variants/SidebarDefault';
-import { SidebarIconsOnly } from './variants/SidebarIconsOnly';
+import { SidebarDefault, SidebarIconsOnly } from './variants';
 //resources
 import React from 'react';
 //entities

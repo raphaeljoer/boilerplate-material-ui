@@ -1,15 +1,22 @@
+//material-ui
+import { CssBaseline, ThemeProvider } from '@mui/material';
+//core-components
+import { Routes } from './Routes';
+//resources
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { BrowserRouter } from 'react-router-dom';
+import { theme } from './theme';
 import { Layout } from './components/Layout';
 
 export function App() {
   return (
-    <Layout>
-      <Box p={2}>
-        <Typography variant="h2" color="primary">
-          Hello World
-        </Typography>
-      </Box>
-    </Layout>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <CssBaseline />
+        <Layout>
+          <Routes />
+        </Layout>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
