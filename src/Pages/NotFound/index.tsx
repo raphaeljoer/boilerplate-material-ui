@@ -7,7 +7,7 @@ export function NotFound() {
     <Main>
       <Box p={2}>
         <Typography variant="h2" color="primary">
-          Jobs
+          404 - Not Found
         </Typography>
       </Box>
     </Main>
