@@ -1,7 +1,7 @@
 //material-ui
 import { Grid, GridProps, Box } from '@mui/material';
 //core-Components
-import { Sidebar } from '../../Components';
+import { Sidebar } from './.';
 //resources
 import React from 'react';
 import * as Styles from './styles';

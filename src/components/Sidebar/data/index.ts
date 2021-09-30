@@ -3,7 +3,7 @@ import {
   RiGroupLine,
   RiDashboard2Line
 } from 'react-icons/ri';
-import { route } from '../../../Routes/paths';
+import { route } from '../../../routes/paths';
 import { Menu, MenuItem } from '../entities/menu';
 
 const recruiterMenuItems: MenuItem[] = [

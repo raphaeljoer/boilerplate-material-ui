@@ -1,7 +1,7 @@
 import { Link, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import React from 'react';
 import { RiFolderOpenLine } from 'react-icons/ri';
-import { Layout, Main } from '../../Components';
+import { Layout, Main } from '../../components';
 
 export function Home() {
   return (

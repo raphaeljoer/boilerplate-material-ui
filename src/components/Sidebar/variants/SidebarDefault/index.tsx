@@ -9,7 +9,7 @@ import * as Styles from './styles';
 //entities
 import { Menu } from '../../entities/menu';
 import { Link } from 'react-router-dom';
-import { route } from '../../../../Routes/paths';
+import { route } from '../../../../routes/paths';
 
 type Props = BoxProps & {
   menu: Menu[];
