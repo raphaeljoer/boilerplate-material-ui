@@ -2,7 +2,6 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
 //core-components
 import { Routes } from './Routes';
-import { Layout } from './Components/Layout';
 //resources
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
@@ -13,9 +12,7 @@ export function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <CssBaseline />
-        <Layout>
-          <Routes />
-        </Layout>
+        <Routes />
       </BrowserRouter>
     </ThemeProvider>
   );

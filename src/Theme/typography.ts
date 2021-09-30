@@ -1,6 +1,6 @@
 import { ThemeOptions } from '@mui/material';
 
-const ubuntu = '"Ubuntu", "Helvetica", "Arial", sans-serif';
+export const ubuntu = '"Ubuntu", "Helvetica", "Arial", sans-serif';
 
 export const typography: ThemeOptions = {
   typography: {

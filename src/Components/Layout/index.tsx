@@ -1,11 +1,9 @@
 //material-ui
-import { Grid, GridProps, useMediaQuery, useTheme, Box } from '@mui/material';
-//core-components
-import { Sidebar } from '../Sidebar';
+import { Grid, GridProps, Box } from '@mui/material';
+//core-Components
+import { Sidebar } from '../../Components';
 //resources
 import React from 'react';
-//data
-import { menu } from '../Sidebar/data';
 import * as Styles from './styles';
 
 type Props = GridProps & {
@@ -13,14 +11,9 @@ type Props = GridProps & {
 };
 
 export function Layout({ children }: Props) {
-  const isTablet = useMediaQuery(useTheme().breakpoints.down('md'));
   return (
     <Grid id="layout" sx={Styles.container}>
-      <Sidebar
-        gridArea="sidebar"
-        menu={menu}
-        variant={isTablet ? 'iconsOnly' : 'default'}
-      />
+      <Sidebar gridArea="sidebar" />
       <Box gridArea="main">{children}</Box>
     </Grid>
   );

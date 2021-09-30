@@ -1,16 +1,19 @@
+import { Link, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import React from 'react';
-import { Box, Typography, Input } from '@mui/material';
-import { Main } from '../../Components/Main';
+import { RiFolderOpenLine } from 'react-icons/ri';
+import { Layout, Main } from '../../Components';
 
 export function Home() {
   return (
-    <Main>
-      <Box p={2}>
-        <Typography variant="h2" color="primary">
-          Home
-        </Typography>
-        <Input />
-      </Box>
-    </Main>
+    <Layout>
+      <Main>
+        <ListItem component={Link} onClick={() => console.log('click')}>
+          <ListItemIcon>
+            <RiFolderOpenLine />
+          </ListItemIcon>
+          <ListItemText>Dashboard</ListItemText>
+        </ListItem>
+      </Main>
+    </Layout>
   );
 }
