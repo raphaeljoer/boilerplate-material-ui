@@ -5,9 +5,8 @@ export const container: SxProps<Theme> = {
   display: 'grid',
   height: '100vh',
   width: '100%',
-  minWidth: (theme) => theme.breakpoints.values.sm,
+  minWidth: (theme) => theme.breakpoints.values.md,
   bgcolor: 'background.paper',
   gridTemplateRows: '1fr',
-  gridTemplateColumns: 'auto 1fr',
-  gridTemplateAreas: "'sidebar main'"
+  gridTemplateColumns: 'auto 1fr'
 };

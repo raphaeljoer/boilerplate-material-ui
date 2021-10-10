@@ -13,7 +13,7 @@ export function Logo({ paletteMode = 'light', ...props }: Props) {
   };
 
   return (
-    <Box sx={{ color: primary[paletteMode] }} {...props}>
+    <Box sx={{ height: '100%', color: primary[paletteMode] }} {...props}>
       <svg
         width="106"
         height="16"

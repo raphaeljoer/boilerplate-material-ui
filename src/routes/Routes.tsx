@@ -2,15 +2,14 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 //core-components
-import { Home, Jobs, NotFound } from '../pages';
+import { Home, NotFound } from '../pages';
 //route-paths
-import { route } from './paths';
+import { path } from './Paths';
 
 export function Routes() {
   return (
     <Switch>
-      <Route exact path={route.root} component={Home} />
-      <Route exact path={route.jobs} component={Jobs} />
+      <Route exact path={path.root} component={Home} />
       <Route component={NotFound} />
     </Switch>
   );

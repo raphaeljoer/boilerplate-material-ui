@@ -5,7 +5,7 @@ import { MenuItem } from '../MenuItem';
 //resources
 import React from 'react';
 //Entities
-import { Menu } from '../../../../entities/menu';
+import { Menu } from '../../../../types/menu';
 
 type Props = BoxProps & {
   menu: Menu;

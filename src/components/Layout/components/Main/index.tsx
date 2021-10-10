@@ -1,5 +1,5 @@
 //material-ui
-import { Stack, Box, BoxProps } from '@mui/material';
+import { Box, BoxProps } from '@mui/material';
 //core-components
 import { Header } from '../Header';
 //resources
@@ -14,9 +14,9 @@ export function Main({ headerProps, children, ...props }: Props) {
   return (
     <Box {...props}>
       <Header {...headerProps} />
-      <Stack component="main" spacing={2}>
+      <Box component="main" overflow="hidden">
         {children}
-      </Stack>
+      </Box>
     </Box>
   );
 }

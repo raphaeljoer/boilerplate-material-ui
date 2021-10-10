@@ -1,5 +1,4 @@
-export const route = {
+export const path = {
   root: '/',
-  home: '/home',
-  jobs: '/jobs'
+  home: '/home'
 };

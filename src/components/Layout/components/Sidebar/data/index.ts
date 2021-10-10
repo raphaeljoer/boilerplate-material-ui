@@ -3,14 +3,14 @@ import {
   RiGroupLine,
   RiDashboard2Line
 } from 'react-icons/ri';
-import { route } from '../../../routes/paths';
-import { Menu, MenuItem } from '../entities/menu';
+import { path } from '../../../../../routes';
+import { Menu, MenuItem } from '../types/menu';
 
 const recruiterMenuItems: MenuItem[] = [
   {
     id: '69de2aac-9ef1-447f-9180-6f7438bad63b',
     label: 'Job Requisitions',
-    path: route.jobs,
+    path: path.home,
     icon: RiFolderOpenLine
   },
   {

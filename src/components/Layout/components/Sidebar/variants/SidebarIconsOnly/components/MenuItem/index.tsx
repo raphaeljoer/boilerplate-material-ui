@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconButton, IconButtonProps, Tooltip } from '@mui/material';
-import { MenuItem as Item } from '../../../../entities/menu';
+import { MenuItem as Item } from '../../../../types/menu';
 import * as Styles from './styles';
 
 type Props = IconButtonProps & {

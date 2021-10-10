@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { Main } from '../../components/Main';
+import { Main } from '../../components/Layout/components/Main';
 
 export function NotFound() {
   return (
