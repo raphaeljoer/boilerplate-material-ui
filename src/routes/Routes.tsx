@@ -2,7 +2,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 //core-components
-import { Home, NotFound } from '../pages';
+import { Home, NotFound } from '../views';
 //route-paths
 import { path } from './Paths';
 
