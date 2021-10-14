@@ -4,7 +4,7 @@ import { ThemeProvider } from '@mui/material';
 import React, { ReactElement } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { theme } from '../../theme';
+import { theme } from '../../../theme';
 
 type Props = {
   children: JSX.Element | JSX.Element[];
