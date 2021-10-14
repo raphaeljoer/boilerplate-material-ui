@@ -31,7 +31,7 @@ const companyMenuItems: MenuItem[] = [
   {
     id: '69de2aac-9ef1-447f-9180-6f7438bad63b',
     label: 'Job Requisitions',
-    path: '/job',
+    path: path.job_requisition,
     icon: RiFolderOpenLine
   },
   {
