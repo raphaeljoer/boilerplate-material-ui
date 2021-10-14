@@ -1,9 +1,9 @@
 import { applicantsExample as input } from '../../../../data/applicantsExample';
-import { Index } from '../index';
+import { ApplicantsPipelineDataAdapter } from '../applicantsPipelineDataAdapter';
 
 describe('ApplicantsPipelineDataAdapter', () => {
   test('Should return a pipeline data object', () => {
-    const sut = new Index();
+    const sut = new ApplicantsPipelineDataAdapter();
     const output = sut.adapt(input);
     expect(output).toEqual({
       items: {

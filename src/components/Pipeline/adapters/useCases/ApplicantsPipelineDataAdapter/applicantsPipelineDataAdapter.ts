@@ -1,4 +1,4 @@
-import { getInitials } from '../../../../../utils/string/getInitials/getInitials';
+import { getInitials } from '../../../../../utils/string/getInitials';
 import { PipelineProps } from '../../../types';
 import { PipelineDataAdapterProtocol } from '../../protocols/PipelineDataAdapterProtocol';
 
@@ -12,7 +12,9 @@ export type Item = {
 export type Items = {
   [key: string]: Item;
 };
-export class Index implements PipelineDataAdapterProtocol {
+export class ApplicantsPipelineDataAdapter
+  implements PipelineDataAdapterProtocol
+{
   adapt(data: any): PipelineProps {
     const itemsFactory = (data: Items) => {
       const items = {};

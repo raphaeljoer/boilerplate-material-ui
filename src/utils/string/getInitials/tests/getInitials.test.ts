@@ -1,4 +1,4 @@
-import { getInitials } from './getInitials';
+import { getInitials } from '../index';
 
 describe('Utils: getInitials', () => {
   test('Should return initials', () => {
