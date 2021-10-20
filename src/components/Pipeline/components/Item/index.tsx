@@ -28,9 +28,11 @@ export function Item({ item, index }: Props) {
             {description && (
               <Typography variant="body2">{description}</Typography>
             )}
-            <Typography variant="caption" color="text.secondary">
-              {formatDateDistance(item.created_at)}
-            </Typography>
+            {item.created_at && (
+              <Typography variant="caption" color="text.secondary">
+                {formatDateDistance(new Date(item.created_at), new Date())}
+              </Typography>
+            )}
           </Box>
         </Box>
       )}
