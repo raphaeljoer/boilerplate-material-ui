@@ -1,11 +1,13 @@
 import React from 'react';
-import { PaletteMode, useTheme, Box, BoxProps } from '@mui/material';
+import { PaletteMode, useTheme, Box, Theme } from '@mui/material';
+import { SxProps } from '@mui/system';
 
-type Props = BoxProps & {
+type Props = {
+  sx?: SxProps<Theme>;
   paletteMode?: PaletteMode;
 };
 
-export function Logo({ paletteMode = 'light', ...props }: Props) {
+export function Logo({ paletteMode = 'light', sx }: Props) {
   const theme = useTheme();
   const primary = {
     light: theme.palette.primary.main,
@@ -13,7 +15,7 @@ export function Logo({ paletteMode = 'light', ...props }: Props) {
   };
 
   return (
-    <Box sx={{ height: '100%', color: primary[paletteMode] }} {...props}>
+    <Box sx={{ color: primary[paletteMode], ...sx }}>
       <svg
         width="106"
         height="16"

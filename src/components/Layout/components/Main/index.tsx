@@ -1,22 +1,18 @@
 //material-ui
-import { Box, BoxProps } from '@mui/material';
-//core-components
-import { Header } from '../Header';
+import { Box, Theme } from '@mui/material';
+import { SxProps } from '@mui/system';
 //resources
 import React from 'react';
 
-type Props = BoxProps & {
-  headerProps?: BoxProps;
+type Props = {
+  sx?: SxProps<Theme>;
   children: JSX.Element | JSX.Element[];
 };
 
-export function Main({ headerProps, children, ...props }: Props) {
+export function Main({ sx, children }: Props) {
   return (
-    <Box {...props}>
-      <Header {...headerProps} />
-      <Box component="main" overflow="hidden">
-        {children}
-      </Box>
+    <Box component="main" overflow="hidden" sx={sx}>
+      {children}
     </Box>
   );
 }
