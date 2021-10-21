@@ -1,5 +1,5 @@
 //material-ui
-import { Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 //core-Components
 import { Sidebar, Main, Header } from './components';
 //resources
@@ -18,6 +18,9 @@ export function Layout({ children }: Props) {
       <Header sx={{ gridArea: 'header' }} />
       <Sidebar sx={{ gridArea: 'aside' }} />
       <Main sx={{ gridArea: 'main' }}>{children}</Main>
+      <Box sx={{ gridArea: 'footer' }}>
+        <p>Footer</p>
+      </Box>
     </Grid>
   );
 }

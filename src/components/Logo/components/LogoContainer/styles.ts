@@ -5,8 +5,6 @@ export const container: SxProps<Theme> = {
   display: 'flex',
   height: '100%',
   alignItems: 'center',
-  borderBottom: '1px solid',
-  borderRight: '1px solid',
-  borderColor: 'grey.300',
+  boxShadow: (theme) => theme.shadows[10],
   pl: 2
 };

@@ -10,5 +10,6 @@ export const container: SxProps<Theme> = {
   gridTemplateColumns: 'auto 1fr',
   gridTemplateRows: '4.5rem 1fr',
   gridTemplateAreas: `"logo header"
-                      "aside main"`
+                      "aside main"
+                      "aside footer"`
 };

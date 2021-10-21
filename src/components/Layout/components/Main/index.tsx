@@ -11,7 +11,7 @@ type Props = {
 
 export function Main({ sx, children }: Props) {
   return (
-    <Box component="main" overflow="hidden" sx={sx}>
+    <Box component="main" position="relative" overflow="scroll" sx={sx}>
       {children}
     </Box>
   );
