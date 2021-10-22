@@ -23,7 +23,8 @@ export const main: SxProps<Theme> = {
 export const footer: SxProps<Theme> = {
   gridArea: 'footer',
   borderTop: 1,
-  borderColor: 'grey.300'
+  borderColor: 'grey.300',
+  bgcolor: 'background.paper'
 };
 
 export namespace content {

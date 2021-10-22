@@ -2,11 +2,12 @@ import { Theme } from '@mui/material';
 import { SxProps } from '@mui/system';
 
 export const container: SxProps<Theme> = {
+  minHeight: '300px',
   mb: 2,
   border: 1,
   borderColor: 'grey.300',
   borderRadius: 3,
-  minHeight: '300px'
+  bgcolor: 'background.paper'
 };
 
 export const header: SxProps<Theme> = {
