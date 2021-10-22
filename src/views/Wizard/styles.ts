@@ -34,10 +34,15 @@ export namespace content {
     gridTemplateColumns: 'auto 1fr auto',
     gridTemplateRows: '1fr',
     gridTemplateAreas: `"left center right"`,
-    gap: 2
+    gap: 2,
+    mt: 4
   };
 
   export const left: SxProps<Theme> = {};
-  export const center: SxProps<Theme> = {};
+  export const main: SxProps<Theme> = {
+    display: 'flex',
+    flexDirection: 'column',
+    rowGap: 4
+  };
   export const right: SxProps<Theme> = {};
 }
