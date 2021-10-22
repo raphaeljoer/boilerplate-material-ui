@@ -6,7 +6,7 @@ import React from 'react';
 export function Welcome() {
   return (
     <div>
-      <Typography variant="h4" mb={1}>
+      <Typography variant="h4" color="primary.main" mb={1}>
         Hi, John
       </Typography>
       <Typography variant="body2" color="text.secondary">
