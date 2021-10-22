@@ -35,9 +35,7 @@ export namespace content {
     gridTemplateColumns: 'auto 1fr auto',
     gridTemplateRows: '1fr',
     gridTemplateAreas: `"left center right"`,
-    gap: 2,
-    mt: 4,
-    mx: 2
+    gap: 2
   };
 
   export const left: SxProps<Theme> = {
@@ -45,14 +43,18 @@ export namespace content {
     display: 'flex',
     flexDirection: 'column',
     maxWidth: '12.5rem',
-    gap: 4
+    gap: 4,
+    mt: 4
   };
 
   export const main: SxProps<Theme> = {
     display: 'flex',
     flexDirection: 'column',
-    rowGap: 4
+    rowGap: 4,
+    mt: 4
   };
 
-  export const right: SxProps<Theme> = {};
+  export const right: SxProps<Theme> = {
+    mt: 4
+  };
 }
