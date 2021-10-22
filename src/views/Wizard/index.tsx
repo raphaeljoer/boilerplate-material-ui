@@ -4,7 +4,8 @@ import { Box, Grid } from '@mui/material';
 import React from 'react';
 //core-components
 import { Layout } from '../../components';
-import { Section } from './components';
+import { Section, Tip } from './components';
+import { Welcome } from './components/Welcome';
 //styles
 import * as styles from './styles';
 
@@ -14,17 +15,14 @@ export function Wizard() {
       <Grid sx={styles.grid}>
         <Box sx={styles.main}>
           <Grid sx={styles.content.grid}>
-            <Box sx={styles.content.left}>left</Box>
+            <Box sx={styles.content.left}>
+              <Welcome />
+              <Tip
+                tips={[{ title: 'Welcome', description: 'Description' }]}
+                activeStep={0}
+              />
+            </Box>
             <Box sx={styles.content.main}>
-              <Section title="title" description="description">
-                <p>body</p>
-              </Section>
-              <Section title="title" description="description">
-                <p>body</p>
-              </Section>
-              <Section title="title" description="description">
-                <p>body</p>
-              </Section>
               <Section title="title" description="description">
                 <p>body</p>
               </Section>
