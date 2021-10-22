@@ -3,7 +3,7 @@ import { Typography } from '@mui/material';
 //resources
 import React from 'react';
 import { RiLightbulbLine } from 'react-icons/ri';
-import { ITip } from 'views/Wizard/types/tip';
+import { ITip } from 'views/Wizard/components/WizardCreate/types/tip';
 
 type Props = {
   tips: ITip[];
