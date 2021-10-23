@@ -1,4 +1,4 @@
-export interface JobReqStateProtocol {
+export interface WizardCreateStateProtocol {
   getName(): string;
   next(): void;
   previous(): void;

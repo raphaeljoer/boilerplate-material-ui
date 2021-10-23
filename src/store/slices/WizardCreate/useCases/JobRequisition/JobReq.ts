@@ -1,8 +1,9 @@
-import { JobReqStateProtocol } from '../states/protocols/JobReqStateProtocol';
-import { JobReqStateDetails } from '../states/useCases/JobReqStateDetails';
+import { JobReqStateProtocol } from './states/protocols/JobReqStateProtocol';
+import { JobReqDetailsState } from './states/useCases/JobReqDetailsState';
 
-export class JobReqDirector {
-  private state: JobReqStateProtocol = new JobReqStateDetails(this);
+export class JobReq {
+  private state: JobReqStateProtocol = new JobReqDetailsState(this);
+  private title = '';
 
   getState(): JobReqStateProtocol {
     return this.state;

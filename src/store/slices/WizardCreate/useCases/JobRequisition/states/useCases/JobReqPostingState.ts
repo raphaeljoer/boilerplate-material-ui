@@ -1,10 +1,10 @@
-import { JobReqDirector } from '../../director/JobReqDirector';
+import { JobReq } from '../../JobReq';
 import { JobReqStateProtocol } from '../protocols/JobReqStateProtocol';
 
-export class JobReqStatePosting implements JobReqStateProtocol {
+export class JobReqPostingState implements JobReqStateProtocol {
   private name = 'posting';
 
-  constructor(private jobReq: JobReqDirector) {}
+  constructor(private jobReq: JobReq) {}
 
   getName(): string {
     return this.name;

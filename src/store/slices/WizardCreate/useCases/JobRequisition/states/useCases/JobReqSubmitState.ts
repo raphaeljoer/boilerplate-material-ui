@@ -1,10 +1,11 @@
-import { JobReqDirector } from '../../director/JobReqDirector';
+import { JobReq } from '../../JobReq';
 import { JobReqStateProtocol } from '../protocols/JobReqStateProtocol';
+import { JobReqPostingState } from './JobReqPostingState';
 
-export class JobReqStateSubmit implements JobReqStateProtocol {
+export class JobReqSubmitState implements JobReqStateProtocol {
   private name = 'submit';
 
-  constructor(private jobReq: JobReqDirector) {}
+  constructor(private jobReq: JobReq) {}
 
   getName(): string {
     return this.name;
@@ -14,6 +15,7 @@ export class JobReqStateSubmit implements JobReqStateProtocol {
   }
   previous(): void {
     console.log('go to posting step');
+    this.jobReq.setState(new JobReqPostingState(this.jobReq));
   }
   submit(): void {
     console.log('submited!');

@@ -6,13 +6,17 @@ import { Routes } from './routes/Routes';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { theme } from './theme';
+import { Provider } from 'react-redux';
+import { store } from 'store';
 
 export function App() {
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Routes />
+        <Provider store={store}>
+          <CssBaseline />
+          <Routes />
+        </Provider>
       </ThemeProvider>
     </BrowserRouter>
   );
