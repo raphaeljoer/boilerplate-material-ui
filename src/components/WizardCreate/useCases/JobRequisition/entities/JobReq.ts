@@ -39,6 +39,10 @@ export class JobReq {
     this.state.prev();
   }
 
+  validate(data: unknown): boolean {
+    return this.state.validate(data);
+  }
+
   submit(): void {
     this.state.submit();
   }

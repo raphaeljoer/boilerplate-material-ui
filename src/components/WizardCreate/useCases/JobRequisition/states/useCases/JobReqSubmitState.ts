@@ -16,6 +16,10 @@ export class JobReqSubmitState implements JobReqStateProtocol {
   prev(): void {
     this.jobReq.setState(new JobReqPostingState(this.jobReq));
   }
+  validate(data: unknown): boolean {
+    console.log(data);
+    return false;
+  }
   submit(): void {
     console.log('submited!');
   }

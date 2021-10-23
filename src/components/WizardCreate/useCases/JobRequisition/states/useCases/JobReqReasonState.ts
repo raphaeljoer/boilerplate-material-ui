@@ -17,6 +17,10 @@ export class JobReqReasonState implements JobReqStateProtocol {
   prev(): void {
     this.jobReq.setState(new JobReqDetailsState(this.jobReq));
   }
+  validate(data: unknown): boolean {
+    console.log(data);
+    return false;
+  }
   submit(): void {
     console.log('cannot submit in reason step');
   }

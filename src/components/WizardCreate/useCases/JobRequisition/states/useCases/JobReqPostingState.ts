@@ -17,6 +17,10 @@ export class JobReqPostingState implements JobReqStateProtocol {
   prev(): void {
     this.jobReq.setState(new JobReqReasonState(this.jobReq));
   }
+  validate(data: unknown): boolean {
+    console.log(data);
+    return false;
+  }
   submit(): void {
     console.log('cannot submit in posting step');
   }

@@ -29,13 +29,13 @@ export function WizardCreate({ steps, sx }: Props) {
   const activeStep = useAppSelector((s) => s.jobReqWizardCreate.activeStep);
 
   const handleNext = useCallback(() => {
-    dispatch(jobReqSetNextStep());
     jobReq.next();
+    dispatch(jobReqSetNextStep());
   }, [dispatch, jobReq]);
 
   const handlePrev = useCallback(() => {
-    dispatch(jobReqSetPrevStep());
     jobReq.prev();
+    dispatch(jobReqSetPrevStep());
   }, [dispatch, jobReq]);
 
   return (

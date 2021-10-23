@@ -16,6 +16,10 @@ export class JobReqDetailsState implements JobReqStateProtocol {
   prev(): void {
     console.log('end of line');
   }
+  validate(data: unknown): boolean {
+    console.log(data);
+    return false;
+  }
   submit(): void {
     console.log('cannot submit in details step');
   }
