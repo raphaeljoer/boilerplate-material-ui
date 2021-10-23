@@ -37,7 +37,8 @@ export namespace content {
     flexDirection: 'column',
     maxWidth: '12.5rem',
     gap: 4,
-    mt: 4
+    mt: 4,
+    ml: 2
   };
 
   export const main: SxProps<Theme> = {
@@ -48,6 +49,8 @@ export namespace content {
   };
 
   export const right: SxProps<Theme> = {
-    mt: 4
+    gridArea: 'right',
+    mt: 4,
+    mr: 2
   };
 }
