@@ -4,7 +4,7 @@ import { SxProps } from '@mui/system';
 //resources
 import React from 'react';
 //core-components
-import { Section, Tip, Welcome } from './components';
+import { Section, Tip, Welcome, Footer } from './components';
 //styles
 import * as styles from './styles';
 //types
@@ -32,7 +32,7 @@ export function WizardCreate({ tips, sx }: Props) {
           <Box sx={styles.content.right}>right</Box>
         </Grid>
       </Box>
-      <Box sx={styles.footer}>footer</Box>
+      <Footer />
     </Grid>
   );
 }

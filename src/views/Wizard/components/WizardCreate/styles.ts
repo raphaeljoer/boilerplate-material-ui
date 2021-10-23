@@ -20,13 +20,6 @@ export const main: SxProps<Theme> = {
   mx: 'auto'
 };
 
-export const footer: SxProps<Theme> = {
-  gridArea: 'footer',
-  borderTop: 1,
-  borderColor: 'grey.300',
-  bgcolor: 'background.paper'
-};
-
 export namespace content {
   export const grid: SxProps<Theme> = {
     display: 'grid',
