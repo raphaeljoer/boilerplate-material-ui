@@ -1,8 +1,8 @@
-import { WizardCreateStateProtocol } from 'store/slices/WizardCreate/protocols/WizardCreateStateProtocol';
+import { WizardCreateStateProtocol } from 'components/WizardCreate/protocols/WizardCreateStateProtocol';
 
 export interface JobReqStateProtocol extends WizardCreateStateProtocol {
   getName(): string;
   next(): void;
-  previous(): void;
+  prev(): void;
   submit(): void;
 }

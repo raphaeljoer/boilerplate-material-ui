@@ -1,6 +1,6 @@
 export interface WizardCreateStateProtocol {
   getName(): string;
   next(): void;
-  previous(): void;
+  prev(): void;
   submit(): void;
 }

@@ -3,6 +3,7 @@ import { ThemeOptions } from '@mui/material';
 //core-styles
 import { MuiButton } from './MuiButton';
 import { MuiButtonBase } from './MuiButtonBase';
+import { MuiInputBase } from './MuiInputBase';
 import { MuiListItemText } from './MuiListenText';
 import { MuiListItem } from './MuiListItem';
 import { MuiListItemIcon } from './MuiListItemIcon';
@@ -15,6 +16,7 @@ export const components: ThemeOptions = {
     MuiTooltip,
     MuiListItemText,
     MuiListItemIcon,
-    MuiListItem
+    MuiListItem,
+    MuiInputBase
   }
 };

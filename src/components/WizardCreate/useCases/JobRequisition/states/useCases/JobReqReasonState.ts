@@ -1,9 +1,10 @@
-import { JobReq } from '../../JobReq';
+import { JobReq } from '../../entities/JobReq';
 import { JobReqStateProtocol } from '../protocols/JobReqStateProtocol';
+import { JobReqDetailsState } from './JobReqDetailsState';
 import { JobReqPostingState } from './JobReqPostingState';
 
-export class JobReqSubmitState implements JobReqStateProtocol {
-  private name = 'submit';
+export class JobReqReasonState implements JobReqStateProtocol {
+  private name = 'reason';
 
   constructor(private jobReq: JobReq) {}
 
@@ -11,13 +12,12 @@ export class JobReqSubmitState implements JobReqStateProtocol {
     return this.name;
   }
   next(): void {
-    console.log('end of line');
-  }
-  previous(): void {
-    console.log('go to posting step');
     this.jobReq.setState(new JobReqPostingState(this.jobReq));
   }
+  prev(): void {
+    this.jobReq.setState(new JobReqDetailsState(this.jobReq));
+  }
   submit(): void {
-    console.log('submited!');
+    console.log('cannot submit in reason step');
   }
 }

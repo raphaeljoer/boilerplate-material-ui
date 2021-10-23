@@ -2,13 +2,13 @@
 import React from 'react';
 //core-components
 import { Layout } from '../../components';
-import { WizardCreate } from './components/WizardCreate';
-import { tips } from './components/WizardCreate/data/tips';
+import { WizardCreate } from '../../components/WizardCreate/useCases/JobRequisition/presentation';
+import { steps } from '../../components/WizardCreate/useCases/JobRequisition/data/samples/steps';
 
 export function Wizard() {
   return (
     <Layout>
-      <WizardCreate sx={{ bgcolor: 'grey.100' }} tips={tips} />
+      <WizardCreate steps={steps} sx={{ bgcolor: 'grey.100' }} />
     </Layout>
   );
 }

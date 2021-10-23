@@ -1,5 +1,7 @@
-import { JobReq } from '../../JobReq';
+import { JobReq } from '../../entities/JobReq';
 import { JobReqStateProtocol } from '../protocols/JobReqStateProtocol';
+import { JobReqReasonState } from './JobReqReasonState';
+import { JobReqSubmitState } from './JobReqSubmitState';
 
 export class JobReqPostingState implements JobReqStateProtocol {
   private name = 'posting';
@@ -10,10 +12,10 @@ export class JobReqPostingState implements JobReqStateProtocol {
     return this.name;
   }
   next(): void {
-    console.log('go to submit step');
+    this.jobReq.setState(new JobReqSubmitState(this.jobReq));
   }
-  previous(): void {
-    console.log('go to reason back');
+  prev(): void {
+    this.jobReq.setState(new JobReqReasonState(this.jobReq));
   }
   submit(): void {
     console.log('cannot submit in posting step');
