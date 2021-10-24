@@ -9,10 +9,10 @@ import {
   jobReqSetPrevStep
 } from 'store/slices/WizardCreate/useCases/jobReqWizardCreate';
 //core-components
-import { Tip, Welcome, Nav, Stepper } from './components';
+import { Tip, Welcome, Nav, Stepper } from '../../../presentation/components';
 //styles
 import * as styles from './styles';
-import { Step } from '../types/step';
+import { Step } from '../../../types/step';
 import { DetailsStep } from './steps/DetailsStep';
 //types
 

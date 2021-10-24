@@ -2,7 +2,7 @@
 import { Autocomplete, Box, InputAdornment, TextField } from '@mui/material';
 //resources
 import React, { useCallback, useEffect } from 'react';
-import { Section } from '../../components';
+import { Section } from '../../../../../presentation/components';
 //data
 import { sampleJobPositions } from '../../../data/samples/jobPositions';
 import { useAppDispatch, useAppSelector } from 'hooks';
