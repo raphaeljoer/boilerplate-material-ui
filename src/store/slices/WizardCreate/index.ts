@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { JobPositionInputType } from 'components/WizardCreate/useCases/JobRequisition/types/Details/JobPositionInputType';
 
-type Details = {
-  jobPosition: number | null;
+type Detail = {
+  jobPosition: JobPositionInputType | null;
+  team: JobPositionInputType | null;
 };
 
 type JobRequisition = {
@@ -9,16 +11,17 @@ type JobRequisition = {
   isNextStepAvailable: boolean;
   isPrevStepAvailable: boolean;
   steps: string[];
-  details: Details;
+  detail: Detail;
 };
 
 const initialState: JobRequisition = {
   activeStep: 0,
-  isNextStepAvailable: true,
-  isPrevStepAvailable: true,
+  isNextStepAvailable: false,
+  isPrevStepAvailable: false,
   steps: ['details', 'reason', 'posting', 'submit'],
-  details: {
-    jobPosition: null
+  detail: {
+    jobPosition: null,
+    team: null
   }
 };
 
@@ -34,15 +37,16 @@ export const jobReqWizardCreateSlice = createSlice({
     jobReqSetPrevStep: (draft) => {
       if (draft.activeStep > 0) draft.activeStep -= 1;
     },
-    jobReqToggleNextStepAvailable: (draft) => {
-      !draft.isNextStepAvailable;
+    jobReqToggleNextStepAvailable: (draft, action: PayloadAction<boolean>) => {
+      console.log('ACTION', action);
+      draft.isNextStepAvailable = action.payload;
     },
-    jobReqTogglePrevStepAvailable: (draft) => {
-      !draft.isPrevStepAvailable;
+    jobReqTogglePrevStepAvailable: (draft, action: PayloadAction<boolean>) => {
+      console.log('ACTION', action);
+      draft.isNextStepAvailable = action.payload;
     },
-    jobReqSetDetails: (draft, action: PayloadAction<Details>) => {
-      console.log(action);
-      !draft.isPrevStepAvailable;
+    jobReqSetDetails: (draft, action: PayloadAction<Detail>) => {
+      draft.detail = action.payload;
     }
   }
 });
