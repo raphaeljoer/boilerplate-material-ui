@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Wizard /> should render the Wizard view 1`] = `
+exports[`<Wizard /> Should render the Wizard view 1`] = `
 <div>
   <div
     class="MuiGrid-root css-owc4l4-MuiGrid-root"
