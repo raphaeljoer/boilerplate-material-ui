@@ -1,17 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+type Details = {
+  jobPosition: number | null;
+};
 
 type JobRequisition = {
   activeStep: number;
   isNextStepAvailable: boolean;
   isPrevStepAvailable: boolean;
   steps: string[];
+  details: Details;
 };
 
 const initialState: JobRequisition = {
   activeStep: 0,
-  isNextStepAvailable: false,
-  isPrevStepAvailable: false,
-  steps: ['details', 'reason', 'posting', 'submit']
+  isNextStepAvailable: true,
+  isPrevStepAvailable: true,
+  steps: ['details', 'reason', 'posting', 'submit'],
+  details: {
+    jobPosition: null
+  }
 };
 
 export const jobReqWizardCreateSlice = createSlice({
@@ -31,11 +39,20 @@ export const jobReqWizardCreateSlice = createSlice({
     },
     jobReqTogglePrevStepAvailable: (draft) => {
       !draft.isPrevStepAvailable;
+    },
+    jobReqSetDetails: (draft, action: PayloadAction<Details>) => {
+      console.log(action);
+      !draft.isPrevStepAvailable;
     }
   }
 });
 
-export const { jobReqSetNextStep, jobReqSetPrevStep } =
-  jobReqWizardCreateSlice.actions;
+export const {
+  jobReqSetNextStep,
+  jobReqSetPrevStep,
+  jobReqToggleNextStepAvailable,
+  jobReqTogglePrevStepAvailable,
+  jobReqSetDetails
+} = jobReqWizardCreateSlice.actions;
 
 export const jobReqWizardCreateReducer = jobReqWizardCreateSlice.reducer;
