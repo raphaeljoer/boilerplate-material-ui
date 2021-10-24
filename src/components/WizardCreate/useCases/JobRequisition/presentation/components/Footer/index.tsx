@@ -1,6 +1,7 @@
 //material-ui
 import { Box, Button, Theme } from '@mui/material';
 import { SxProps } from '@mui/system';
+import { useAppSelector } from 'hooks';
 //resources
 import React from 'react';
 //styles
@@ -13,6 +14,12 @@ type Props = {
 };
 
 export function Footer({ onNext, onPrev, sx }: Props) {
+  const isNextStepAvailable = useAppSelector(
+    (s) => s.jobReqWizardCreate.isNextStepAvailable
+  );
+  const isPrevStepAvailable = useAppSelector(
+    (s) => s.jobReqWizardCreate.isPrevStepAvailable
+  );
   return (
     <Box sx={{ ...styles.container, ...sx }}>
       <Box sx={styles.content}>
@@ -20,17 +27,19 @@ export function Footer({ onNext, onPrev, sx }: Props) {
           variant="contained"
           size="large"
           color="secondary"
+          disabled={!isPrevStepAvailable}
           onClick={onPrev}
         >
-          Back
+          Previous
         </Button>
         <Button
           variant="contained"
           size="large"
           color="secondary"
+          disabled={!isNextStepAvailable}
           onClick={onNext}
         >
-          Next
+          Continue
         </Button>
       </Box>
     </Box>

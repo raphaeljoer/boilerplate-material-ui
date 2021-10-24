@@ -2,11 +2,15 @@ import { createSlice } from '@reduxjs/toolkit';
 
 type JobRequisition = {
   activeStep: number;
+  isNextStepAvailable: boolean;
+  isPrevStepAvailable: boolean;
   steps: string[];
 };
 
 const initialState: JobRequisition = {
   activeStep: 0,
+  isNextStepAvailable: false,
+  isPrevStepAvailable: false,
   steps: ['details', 'reason', 'posting', 'submit']
 };
 
@@ -21,6 +25,12 @@ export const jobReqWizardCreateSlice = createSlice({
     },
     jobReqSetPrevStep: (draft) => {
       if (draft.activeStep > 0) draft.activeStep -= 1;
+    },
+    jobReqToggleNextStepAvailable: (draft) => {
+      !draft.isNextStepAvailable;
+    },
+    jobReqTogglePrevStepAvailable: (draft) => {
+      !draft.isPrevStepAvailable;
     }
   }
 });
