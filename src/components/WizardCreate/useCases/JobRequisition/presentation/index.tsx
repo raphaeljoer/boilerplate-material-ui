@@ -9,7 +9,7 @@ import {
   jobReqSetPrevStep
 } from 'store/slices/WizardCreate/useCases/jobReqWizardCreate';
 //core-components
-import { Tip, Welcome, Footer, Stepper } from './components';
+import { Tip, Welcome, Nav, Stepper } from './components';
 //styles
 import * as styles from './styles';
 import { Step } from '../types/step';
@@ -49,7 +49,9 @@ export function JobReqWizardCreate({ steps, sx }: Props) {
           </Box>
         </Grid>
       </Box>
-      <Footer onPrev={handlePrev} onNext={handleNext} />
+      <Box sx={styles.footer}>
+        <Nav onPrev={handlePrev} onNext={handleNext} />
+      </Box>
     </Grid>
   );
 }

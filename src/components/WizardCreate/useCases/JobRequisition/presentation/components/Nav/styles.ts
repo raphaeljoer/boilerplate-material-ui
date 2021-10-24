@@ -1,13 +1,6 @@
 import { Theme } from '@mui/material';
 import { SxProps } from '@mui/system';
 
-export const container: SxProps<Theme> = {
-  gridArea: 'footer',
-  borderTop: 1,
-  borderColor: 'grey.300',
-  bgcolor: 'background.paper'
-};
-
 export const content: SxProps<Theme> = {
   display: 'flex',
   alignItems: 'center',

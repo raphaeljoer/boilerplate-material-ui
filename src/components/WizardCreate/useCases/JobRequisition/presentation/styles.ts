@@ -54,3 +54,10 @@ export namespace content {
     mr: 2
   };
 }
+
+export const footer: SxProps<Theme> = {
+  gridArea: 'footer',
+  borderTop: 1,
+  borderColor: 'grey.300',
+  bgcolor: 'background.paper'
+};
