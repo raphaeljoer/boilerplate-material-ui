@@ -1,9 +1,15 @@
+//redux
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+//types
+import { InputType } from 'components/WizardCreate/useCases/JobRequisition/types/Details/InputType';
 import { JobPositionInputType } from 'components/WizardCreate/useCases/JobRequisition/types/Details/JobPositionInputType';
 
 type Detail = {
   jobPosition: JobPositionInputType | null;
   team: JobPositionInputType | null;
+  currency: InputType | null;
+  minSalary: number | null;
+  maxSalary: number | null;
 };
 
 type JobRequisition = {
@@ -21,7 +27,10 @@ const initialState: JobRequisition = {
   steps: ['details', 'reason', 'posting', 'submit'],
   detail: {
     jobPosition: null,
-    team: null
+    team: null,
+    currency: null,
+    minSalary: null,
+    maxSalary: null
   }
 };
 
@@ -38,11 +47,11 @@ export const jobReqWizardCreateSlice = createSlice({
       if (draft.activeStep > 0) draft.activeStep -= 1;
     },
     jobReqToggleNextStepAvailable: (draft, action: PayloadAction<boolean>) => {
-      console.log('ACTION', action);
+      // console.log('ACTION', action);
       draft.isNextStepAvailable = action.payload;
     },
     jobReqTogglePrevStepAvailable: (draft, action: PayloadAction<boolean>) => {
-      console.log('ACTION', action);
+      // console.log('ACTION', action);
       draft.isNextStepAvailable = action.payload;
     },
     jobReqSetDetails: (draft, action: PayloadAction<Detail>) => {

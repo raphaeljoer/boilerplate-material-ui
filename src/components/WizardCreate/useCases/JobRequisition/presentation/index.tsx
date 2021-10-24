@@ -3,8 +3,7 @@ import { Box, Grid, Theme } from '@mui/material';
 import { SxProps } from '@mui/system';
 import { useAppDispatch, useAppSelector } from 'hooks';
 //resources
-import React, { useCallback, useMemo } from 'react';
-import { JobReq } from 'components/WizardCreate/useCases/JobRequisition/entities/JobReq';
+import React, { useCallback } from 'react';
 import {
   jobReqSetNextStep,
   jobReqSetPrevStep
@@ -23,20 +22,16 @@ type Props = {
 };
 
 export function WizardCreate({ steps, sx }: Props) {
-  const jobReq = useMemo(() => new JobReq(), []);
-
   const dispatch = useAppDispatch();
   const activeStep = useAppSelector((s) => s.jobReqWizardCreate.activeStep);
 
   const handleNext = useCallback(() => {
-    jobReq.next();
     dispatch(jobReqSetNextStep());
-  }, [dispatch, jobReq]);
+  }, [dispatch]);
 
   const handlePrev = useCallback(() => {
-    jobReq.prev();
     dispatch(jobReqSetPrevStep());
-  }, [dispatch, jobReq]);
+  }, [dispatch]);
 
   return (
     <Grid sx={{ ...styles.grid, ...sx }}>

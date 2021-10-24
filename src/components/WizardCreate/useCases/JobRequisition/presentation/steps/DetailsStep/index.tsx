@@ -1,7 +1,7 @@
 //material-ui
-import { Autocomplete, Box, TextField } from '@mui/material';
+import { Autocomplete, Box, InputAdornment, TextField } from '@mui/material';
 //resources
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Section } from '../../components';
 //data
 import { sampleJobPositions } from '../../../data/samples/jobPositions';
@@ -11,18 +11,29 @@ import {
   jobReqToggleNextStepAvailable
 } from 'store/slices/WizardCreate';
 import { useForm } from 'react-hook-form';
-import { JobPositionInputType } from '../../../types/Details/JobPositionInputType';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { sampleTeams } from '../../../data/samples/teams';
-import { TeamInputType } from '../../../types/Details/TeamInputType';
+import { sampleCurrencies } from '../../../data/samples/currencies';
+import { InputType } from '../../../types/Details/InputType';
 
-type AutocompleteParams<T> = {
-  e?: React.SyntheticEvent<Element, Event>;
-  input: T | null;
-};
+const salaryAdornment = <InputAdornment position="end">$</InputAdornment>;
 
-type AutocompleteOnChange<T> = (params: AutocompleteParams<T>) => void;
+// const experienceAdornment = (
+//   <InputAdornment position="end">
+//     years</InputAdornment>
+// );
+
+type AutocompleteOnChange<T> = (
+  e: React.SyntheticEvent<Element, Event>,
+  input: T | null,
+  id: string
+) => void;
+
+type InputOnChange = (
+  e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+  value?: string | number
+) => void;
 
 const schema = yup
   .object({
@@ -33,12 +44,25 @@ const schema = yup
     team: yup
       .object()
       .typeError('Select a team')
-      .required('Please choose a team')
-    // currency: yup.number().positive(positiveError).integer(integerError).required('is required'),
-    // minSalary: yup.number().positive(positiveError).integer(integerError).required('Please inform the minimum salary'),
-    // maxSalary: yup.number().positive(positiveError).integer(integerError).required('Please inform the maximum salary'),
-    // minExperience: yup.number().positive(positiveError).integer(integerError).required('Please inform the minimum experience'),
-    // maxExperience: yup.number().positive(positiveError).integer(integerError).required('Please inform the maximum experience'),
+      .required('Please choose a team'),
+    currency: yup
+      .object()
+      .typeError('Select a currency')
+      .required('Select a currency'),
+    minSalary: yup
+      .number()
+      .moreThan(100, 'Salary must be greater than 100')
+      .typeError('Enter a number')
+      .integer('Enter a integer value')
+      .positive('Must be a valid salary')
+      .required('Please inform the minimum salary'),
+    maxSalary: yup
+      .number()
+      .moreThan(100, 'Salary must be greater than 100')
+      .typeError('Enter a number')
+      .integer('Enter a integer value')
+      .positive('Must be a valid salary')
+      .required('Please inform the minimum salary')
   })
   .required();
 
@@ -53,31 +77,32 @@ export function DetailsStep() {
 
   const detail = useAppSelector((s) => s.jobReqWizardCreate.detail);
 
-  const validateStep = useCallback(() => {
-    const hasAnyNullValue = Object.values(detail).includes(null);
-    dispatch(jobReqToggleNextStepAvailable(!hasAnyNullValue));
-  }, [detail, dispatch]);
-
-  const handleChangeJobPosition: AutocompleteOnChange<JobPositionInputType> =
-    useCallback(
-      ({ input }) => {
-        setValue('jobPosition', input);
-        dispatch(jobReqSetDetails({ ...detail, jobPosition: input }));
-        trigger('jobPosition');
-      },
-      [detail, dispatch, setValue, trigger]
-    );
-
-  const handleChangeTeam: AutocompleteOnChange<TeamInputType> = useCallback(
-    ({ input }) => {
-      setValue('team', input);
-      dispatch(jobReqSetDetails({ ...detail, team: input }));
-      trigger('team');
+  const handleChangeAutocomplete: AutocompleteOnChange<InputType> = useCallback(
+    async (e, input, id) => {
+      console.log(`${id} changed`);
+      setValue(id, input);
+      dispatch(jobReqSetDetails({ ...detail, [id]: input }));
+      await trigger(id);
     },
     [detail, dispatch, setValue, trigger]
   );
 
-  useEffect(() => validateStep(), [detail, errors, validateStep]);
+  const handleChangeInput: InputOnChange = useCallback(
+    async (e) => {
+      const id = e.target.id;
+      const value = e.target.value;
+      setValue(id, value);
+      dispatch(jobReqSetDetails({ ...detail, [id]: value }));
+      await trigger(id);
+    },
+    [detail, dispatch, setValue, trigger]
+  );
+
+  useEffect(() => {
+    const hasNullValues = Object.values(detail).includes(null);
+    const hasErrors = Object.values(errors).length !== 0;
+    dispatch(jobReqToggleNextStepAvailable(!hasNullValues && !hasErrors));
+  });
 
   return (
     <>
@@ -101,7 +126,9 @@ export function DetailsStep() {
                 {...params}
               />
             )}
-            onChange={(_, input) => handleChangeJobPosition({ input })}
+            onChange={(e, input) =>
+              handleChangeAutocomplete(e, input, 'jobPosition')
+            }
           />
         </Box>
       </Section>
@@ -125,8 +152,65 @@ export function DetailsStep() {
               helperText={errors.team?.message}
             />
           )}
-          onChange={(_, input) => handleChangeTeam({ input })}
+          onChange={(e, input) => handleChangeAutocomplete(e, input, 'team')}
         />
+      </Section>
+
+      {/* SALARY */}
+
+      <Section
+        title="Salary"
+        description="Enter a salary range for this type of work"
+      >
+        <Box sx={{ display: 'flex', width: '100%' }}>
+          <Autocomplete
+            id="currency"
+            disablePortal
+            options={sampleCurrencies}
+            sx={{ width: '20%' }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Currency"
+                error={!!errors.currency}
+                helperText={errors.currency?.message}
+              />
+            )}
+            onChange={(e, input) =>
+              handleChangeAutocomplete(e, input, 'currency')
+            }
+          />
+          <TextField
+            id="minSalary"
+            label="Min salary"
+            sx={{ width: '40%', ml: 2 }}
+            type="number"
+            InputProps={{
+              endAdornment: salaryAdornment,
+              inputProps: { min: 100, step: 100 }
+            }}
+            defaultValue={detail.minSalary}
+            helperText={errors.minSalary?.message}
+            error={!!errors.minSalary}
+            onChange={handleChangeInput}
+          />
+          <TextField
+            id="maxSalary"
+            label="Max salary"
+            sx={{ width: '40%', ml: 2 }}
+            type="number"
+            InputProps={{
+              endAdornment: salaryAdornment,
+              inputProps: {
+                min: (Number(detail?.minSalary) || 0) + 100,
+                step: 100
+              }
+            }}
+            helperText={errors.maxSalary?.message}
+            error={!!errors.maxSalary}
+            onChange={handleChangeInput}
+          />
+        </Box>
       </Section>
     </>
   );
