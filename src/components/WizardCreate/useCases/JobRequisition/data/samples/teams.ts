@@ -1,6 +1,6 @@
-import { TeamInputType } from '../../types/Details/TeamInputType';
+import { InputType } from '../../types/InputType';
 
-export const sampleTeams: TeamInputType[] = [
+export const sampleTeams: InputType[] = [
   { label: 'HCO Apps', id: 1 },
   { label: 'Finance', id: 2 },
   { label: 'IT', id: 3 }

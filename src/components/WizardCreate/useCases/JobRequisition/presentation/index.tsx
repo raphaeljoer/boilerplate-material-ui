@@ -7,7 +7,7 @@ import React, { useCallback } from 'react';
 import {
   jobReqSetNextStep,
   jobReqSetPrevStep
-} from 'store/slices/WizardCreate';
+} from 'store/slices/WizardCreate/useCases/jobReqWizardCreate';
 //core-components
 import { Tip, Welcome, Footer, Stepper } from './components';
 //styles
@@ -21,7 +21,7 @@ type Props = {
   steps: Step[];
 };
 
-export function WizardCreate({ steps, sx }: Props) {
+export function JobReqWizardCreate({ steps, sx }: Props) {
   const dispatch = useAppDispatch();
   const activeStep = useAppSelector((s) => s.jobReqWizardCreate.activeStep);
 

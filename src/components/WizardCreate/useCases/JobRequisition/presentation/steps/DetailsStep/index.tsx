@@ -9,13 +9,13 @@ import { useAppDispatch, useAppSelector } from 'hooks';
 import {
   jobReqSetDetails,
   jobReqToggleNextStepAvailable
-} from 'store/slices/WizardCreate';
+} from 'store/slices/WizardCreate/useCases/jobReqWizardCreate';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { sampleTeams } from '../../../data/samples/teams';
 import { sampleCurrencies } from '../../../data/samples/currencies';
-import { InputType } from '../../../types/Details/InputType';
+import { InputType } from '../../../types/InputType';
 
 const salaryAdornment = <InputAdornment position="end">$</InputAdornment>;
 

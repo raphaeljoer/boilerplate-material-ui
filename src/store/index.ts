@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { jobReqWizardCreateReducer } from './slices/WizardCreate';
+import { jobReqWizardCreateReducer } from './slices/WizardCreate/useCases/jobReqWizardCreate';
 
 export const store = configureStore({
   reducer: {
