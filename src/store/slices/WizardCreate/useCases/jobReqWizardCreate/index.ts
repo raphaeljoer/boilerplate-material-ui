@@ -14,7 +14,8 @@ const initialState: InitialState = {
     currency: null,
     minSalary: null,
     maxSalary: null
-  }
+  },
+  reason: null
 };
 
 export const jobReqWizardCreateSlice = createSlice({
@@ -33,10 +34,13 @@ export const jobReqWizardCreateSlice = createSlice({
       draft.isNextStepAvailable = action.payload;
     },
     jobReqTogglePrevStepAvailable: (draft, action: PayloadAction<boolean>) => {
-      draft.isNextStepAvailable = action.payload;
+      draft.isPrevStepAvailable = action.payload;
     },
     jobReqSetDetails: (draft, action: PayloadAction<Detail>) => {
       draft.detail = action.payload;
+    },
+    jobReqSetReason: (draft, action: PayloadAction<string>) => {
+      draft.reason = action.payload;
     }
   }
 });
@@ -46,7 +50,8 @@ export const {
   jobReqSetPrevStep,
   jobReqToggleNextStepAvailable,
   jobReqTogglePrevStepAvailable,
-  jobReqSetDetails
+  jobReqSetDetails,
+  jobReqSetReason
 } = jobReqWizardCreateSlice.actions;
 
 export const jobReqWizardCreateReducer = jobReqWizardCreateSlice.reducer;

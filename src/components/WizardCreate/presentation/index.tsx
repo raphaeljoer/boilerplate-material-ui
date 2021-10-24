@@ -14,7 +14,7 @@ type Props = {
   sx?: SxProps<Theme>;
   steps: Step[];
   activeStep: number;
-  children: JSX.Element | JSX.Element[];
+  children: JSX.Element[];
   onNext: () => void;
   onPrev: () => void;
 };
@@ -22,11 +22,15 @@ type Props = {
 export function WizardCreate({
   activeStep,
   steps,
-  sx,
   children,
+  sx,
   onPrev,
   onNext
 }: Props) {
+  if (!children) {
+    console.warn('You must provide multiple steps for wizard create.');
+    return null;
+  }
   return (
     <Grid sx={{ ...styles.grid, ...sx }}>
       <Box sx={styles.main}>
@@ -35,7 +39,7 @@ export function WizardCreate({
             <Welcome />
             <Tip steps={steps} activeStep={activeStep} />
           </Box>
-          <Box sx={styles.content.main}>{children}</Box>
+          <Box sx={styles.content.main}>{children[activeStep]}</Box>
           <Box sx={styles.content.right}>
             <Stepper steps={steps} activeStep={activeStep} />
           </Box>

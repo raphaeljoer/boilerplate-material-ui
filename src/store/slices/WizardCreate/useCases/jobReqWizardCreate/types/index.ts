@@ -14,4 +14,5 @@ export type InitialState = {
   isPrevStepAvailable: boolean;
   steps: string[];
   detail: Detail;
+  reason: string | null;
 };

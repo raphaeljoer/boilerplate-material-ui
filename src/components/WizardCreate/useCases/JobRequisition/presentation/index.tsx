@@ -1,29 +1,35 @@
 //material-ui
-import { Box, Grid, Theme } from '@mui/material';
+import { Theme } from '@mui/material';
 import { SxProps } from '@mui/system';
 import { useAppDispatch, useAppSelector } from 'hooks';
+//core-components
+import { WizardCreate } from 'components/WizardCreate/presentation';
 //resources
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
+//redux
 import {
   jobReqSetNextStep,
-  jobReqSetPrevStep
+  jobReqSetPrevStep,
+  jobReqTogglePrevStepAvailable
 } from 'store/slices/WizardCreate/useCases/jobReqWizardCreate';
-//core-components
-import { Tip, Welcome, Nav, Stepper } from '../../../presentation/components';
-//styles
-import * as styles from './styles';
-import { Step } from '../../../types/step';
+//steps
 import { DetailsStep } from './steps/DetailsStep';
+import { ReasonStep } from './steps/Reason';
+//data
+import { steps } from '../data/samples/steps';
 //types
 
 type Props = {
   sx?: SxProps<Theme>;
-  steps: Step[];
 };
 
-export function JobReqWizardCreate({ steps, sx }: Props) {
+export function JobReqWizardCreate({ sx }: Props) {
   const dispatch = useAppDispatch();
   const activeStep = useAppSelector((s) => s.jobReqWizardCreate.activeStep);
+
+  useEffect(() => {
+    dispatch(jobReqTogglePrevStepAvailable(activeStep > 0));
+  }, [activeStep, dispatch]);
 
   const handleNext = useCallback(() => {
     dispatch(jobReqSetNextStep());
@@ -34,24 +40,15 @@ export function JobReqWizardCreate({ steps, sx }: Props) {
   }, [dispatch]);
 
   return (
-    <Grid sx={{ ...styles.grid, ...sx }}>
-      <Box sx={styles.main}>
-        <Grid sx={styles.content.grid}>
-          <Box sx={styles.content.left}>
-            <Welcome />
-            <Tip steps={steps} activeStep={activeStep} />
-          </Box>
-          <Box sx={styles.content.main}>
-            <DetailsStep />
-          </Box>
-          <Box sx={styles.content.right}>
-            <Stepper steps={steps} activeStep={activeStep} />
-          </Box>
-        </Grid>
-      </Box>
-      <Box sx={styles.footer}>
-        <Nav onPrev={handlePrev} onNext={handleNext} />
-      </Box>
-    </Grid>
+    <WizardCreate
+      sx={sx}
+      steps={steps}
+      activeStep={activeStep}
+      onNext={handleNext}
+      onPrev={handlePrev}
+    >
+      <DetailsStep />
+      <ReasonStep />
+    </WizardCreate>
   );
 }

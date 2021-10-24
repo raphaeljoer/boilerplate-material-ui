@@ -12,10 +12,10 @@ import {
 } from 'store/slices/WizardCreate/useCases/jobReqWizardCreate';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import { sampleTeams } from '../../../data/samples/teams';
 import { sampleCurrencies } from '../../../data/samples/currencies';
 import { InputType } from '../../../types/InputType';
+import { schema } from './validations/schema';
 
 const salaryAdornment = <InputAdornment position="end">$</InputAdornment>;
 
@@ -35,37 +35,6 @@ type InputOnChange = (
   value?: string | number
 ) => void;
 
-const schema = yup
-  .object({
-    jobPosition: yup
-      .object()
-      .typeError('Select a job position')
-      .required('Select a job position'),
-    team: yup
-      .object()
-      .typeError('Select a team')
-      .required('Please choose a team'),
-    currency: yup
-      .object()
-      .typeError('Select a currency')
-      .required('Select a currency'),
-    minSalary: yup
-      .number()
-      .moreThan(100, 'Salary must be greater than 100')
-      .typeError('Enter a number')
-      .integer('Enter a integer value')
-      .positive('Must be a valid salary')
-      .required('Please inform the minimum salary'),
-    maxSalary: yup
-      .number()
-      .moreThan(100, 'Salary must be greater than 100')
-      .typeError('Enter a number')
-      .integer('Enter a integer value')
-      .positive('Must be a valid salary')
-      .required('Please inform the minimum salary')
-  })
-  .required();
-
 export function DetailsStep() {
   const {
     setValue,
@@ -79,7 +48,6 @@ export function DetailsStep() {
 
   const handleChangeAutocomplete: AutocompleteOnChange<InputType> = useCallback(
     async (e, input, id) => {
-      console.log(`${id} changed`);
       setValue(id, input);
       dispatch(jobReqSetDetails({ ...detail, [id]: input }));
       await trigger(id);
@@ -118,6 +86,7 @@ export function DetailsStep() {
             disablePortal
             options={sampleJobPositions}
             sx={{ width: '100%' }}
+            defaultValue={detail.jobPosition}
             renderInput={(params) => (
               <TextField
                 label="Job Position"
@@ -144,6 +113,7 @@ export function DetailsStep() {
           disablePortal
           options={sampleTeams}
           sx={{ width: '100%' }}
+          defaultValue={detail.team}
           renderInput={(params) => (
             <TextField
               {...params}
@@ -168,6 +138,7 @@ export function DetailsStep() {
             disablePortal
             options={sampleCurrencies}
             sx={{ width: '20%' }}
+            defaultValue={detail.currency}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -206,6 +177,7 @@ export function DetailsStep() {
                 step: 100
               }
             }}
+            defaultValue={detail.maxSalary}
             helperText={errors.maxSalary?.message}
             error={!!errors.maxSalary}
             onChange={handleChangeInput}
