@@ -2,6 +2,7 @@
 import { Box, Button, Theme } from '@mui/material';
 import { SxProps } from '@mui/system';
 import { useAppSelector } from 'hooks';
+import { ArrowForwardOutlined, ArrowBackOutlined } from '@mui/icons-material';
 //resources
 import React from 'react';
 //styles
@@ -27,6 +28,7 @@ export function Nav({ onNext, onPrev, sx }: Props) {
         size="large"
         color="secondary"
         disabled={!isPrevStepAvailable}
+        startIcon={<ArrowBackOutlined />}
         onClick={onPrev}
       >
         Previous
@@ -36,6 +38,7 @@ export function Nav({ onNext, onPrev, sx }: Props) {
         size="large"
         color="secondary"
         disabled={!isNextStepAvailable}
+        endIcon={<ArrowForwardOutlined />}
         onClick={onNext}
       >
         Continue
