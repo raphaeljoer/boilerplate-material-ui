@@ -13,7 +13,9 @@ const initialState: InitialState = {
     team: null,
     currency: null,
     minSalary: null,
-    maxSalary: null
+    maxSalary: null,
+    minExperience: null,
+    maxExperience: null
   },
   reason: null
 };

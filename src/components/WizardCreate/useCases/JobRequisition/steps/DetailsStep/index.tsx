@@ -19,10 +19,9 @@ import { schema } from './validations/schema';
 
 const salaryAdornment = <InputAdornment position="end">$</InputAdornment>;
 
-// const experienceAdornment = (
-//   <InputAdornment position="end">
-//     years</InputAdornment>
-// );
+const experienceAdornment = (
+  <InputAdornment position="end">years</InputAdornment>
+);
 
 type AutocompleteOnChange<T> = (
   e: React.SyntheticEvent<Element, Event>,
@@ -82,7 +81,7 @@ export function DetailsStep() {
       >
         <Box sx={{ display: 'flex', width: '100%' }}>
           <Autocomplete
-            id="jobPosition"
+            id="jobPosition" //Don't change this id
             disablePortal
             options={sampleJobPositions}
             sx={{ width: '100%' }}
@@ -109,7 +108,7 @@ export function DetailsStep() {
         description="Select the team for which you want to create this job requisition"
       >
         <Autocomplete
-          id="team"
+          id="team" //Don't change this id
           disablePortal
           options={sampleTeams}
           sx={{ width: '100%' }}
@@ -134,7 +133,7 @@ export function DetailsStep() {
       >
         <Box sx={{ display: 'flex', width: '100%' }}>
           <Autocomplete
-            id="currency"
+            id="currency" //Don't change this id
             disablePortal
             options={sampleCurrencies}
             sx={{ width: '20%' }}
@@ -152,7 +151,7 @@ export function DetailsStep() {
             }
           />
           <TextField
-            id="minSalary"
+            id="minSalary" //Don't change this id
             label="Min salary"
             sx={{ width: '40%', ml: 2 }}
             type="number"
@@ -166,20 +165,56 @@ export function DetailsStep() {
             onChange={handleChangeInput}
           />
           <TextField
-            id="maxSalary"
+            id="maxSalary" //Don't change this id
             label="Max salary"
             sx={{ width: '40%', ml: 2 }}
             type="number"
             InputProps={{
               endAdornment: salaryAdornment,
               inputProps: {
-                min: (Number(detail?.minSalary) || 0) + 100,
+                min: detail?.minSalary || 0 + 100,
                 step: 100
               }
             }}
             defaultValue={detail.maxSalary}
             helperText={errors.maxSalary?.message}
             error={!!errors.maxSalary}
+            onChange={handleChangeInput}
+          />
+        </Box>
+      </Section>
+
+      {/* EXPERIENCE */}
+
+      <Section
+        title="Experience"
+        description="Enter the experience range (in years) required for this job"
+      >
+        <Box sx={{ display: 'flex', width: '100%' }}>
+          <TextField
+            id="minExperience" //Don't change this id
+            label="Min Experience"
+            sx={{ width: '50%' }}
+            helperText={errors.minExperience?.message}
+            error={!!errors.minExperience}
+            type="number"
+            InputProps={{
+              endAdornment: experienceAdornment,
+              inputProps: { min: 1 }
+            }}
+            onChange={handleChangeInput}
+          />
+          <TextField
+            id="maxExperience" //Don't change this id
+            label="Max Experience"
+            sx={{ width: '50%', ml: (theme) => theme.spacing(2) }}
+            helperText={errors.maxExperience?.message}
+            error={!!errors.maxExperience}
+            type="number"
+            InputProps={{
+              endAdornment: experienceAdornment,
+              inputProps: { min: detail?.minExperience || 0 + 1 }
+            }}
             onChange={handleChangeInput}
           />
         </Box>

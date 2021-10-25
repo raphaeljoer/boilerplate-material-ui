@@ -7,6 +7,8 @@ export type Detail = {
   currency: InputType | null;
   minSalary: number | null;
   maxSalary: number | null;
+  minExperience: number | null;
+  maxExperience: number | null;
 };
 
 export type InitialState = InitialWizardCreateState & {

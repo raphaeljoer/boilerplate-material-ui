@@ -27,6 +27,20 @@ export const schema = yup
       .typeError('Enter a number')
       .integer('Enter a integer value')
       .positive('Must be a valid salary')
-      .required('Please inform the minimum salary')
+      .required('Please inform the minimum salary'),
+    minExperience: yup
+      .number()
+      .moreThan(0, 'Experience must be greater than 0')
+      .typeError('Enter a number')
+      .integer('Enter a integer value')
+      .positive('Must be a valid experience')
+      .required('Please inform the minimum experience'),
+    maxExperience: yup
+      .number()
+      .moreThan(0, 'Experience must be greater than 0')
+      .typeError('Enter a number')
+      .integer('Enter a integer value')
+      .positive('Must be a valid experience')
+      .required('Please inform the minimum experience')
   })
   .required();
