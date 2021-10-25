@@ -3,8 +3,8 @@ import { SxProps } from '@mui/system';
 
 export const grid: SxProps<Theme> = {
   display: 'grid',
-  height: '100%',
   width: '100%',
+  height: 'calc(100vh - 64px)',
   overflow: 'scroll',
   gridTemplateColumns: '1fr',
   gridTemplateRows: '1fr 80px',
