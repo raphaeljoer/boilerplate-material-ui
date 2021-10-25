@@ -1,5 +1,5 @@
 //material-ui
-import { Box, Button, Theme } from '@mui/material';
+import { Box, Button, Theme, Tooltip } from '@mui/material';
 import { SxProps } from '@mui/system';
 import { useAppSelector } from 'hooks';
 import { ArrowForwardOutlined, ArrowBackOutlined } from '@mui/icons-material';
@@ -21,6 +21,9 @@ export function Nav({ onNext, onPrev, sx }: Props) {
   const isPrevStepAvailable = useAppSelector(
     (s) => s.jobReqWizardCreate.isPrevStepAvailable
   );
+  const nextTip = isNextStepAvailable
+    ? 'continue'
+    : 'You must fill all the required fields';
   return (
     <Box sx={{ ...styles.content, ...sx }}>
       <Button
@@ -33,16 +36,20 @@ export function Nav({ onNext, onPrev, sx }: Props) {
       >
         Previous
       </Button>
-      <Button
-        variant="contained"
-        size="large"
-        color="secondary"
-        disabled={!isNextStepAvailable}
-        endIcon={<ArrowForwardOutlined />}
-        onClick={onNext}
-      >
-        Continue
-      </Button>
+      <Tooltip title={nextTip}>
+        <div>
+          <Button
+            variant="contained"
+            size="large"
+            color="secondary"
+            disabled={!isNextStepAvailable}
+            endIcon={<ArrowForwardOutlined />}
+            onClick={onNext}
+          >
+            Continue
+          </Button>
+        </div>
+      </Tooltip>
     </Box>
   );
 }
