@@ -21,6 +21,12 @@ export const main: SxProps<Theme> = {
 };
 
 export namespace content {
+  const column: SxProps<Theme> = {
+    position: 'sticky',
+    top: (theme) => theme.spacing(3),
+    height: 'fit-content'
+  };
+
   export const grid: SxProps<Theme> = {
     display: 'grid',
     height: '100%',
@@ -31,6 +37,7 @@ export namespace content {
   };
 
   export const left: SxProps<Theme> = {
+    ...column,
     gridArea: 'left',
     display: { xs: 'none', md: 'flex' },
     flexDirection: 'column',
@@ -50,6 +57,7 @@ export namespace content {
   };
 
   export const right: SxProps<Theme> = {
+    ...column,
     gridArea: 'right',
     mt: 4,
     mx: 2
