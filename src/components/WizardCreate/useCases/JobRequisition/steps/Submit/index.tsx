@@ -4,11 +4,10 @@ import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { Section } from '../../../../presentation/components';
 //data
-import { useAppDispatch, useAppSelector } from 'hooks';
+import { useAppSelector } from 'hooks';
+import { htmlSanitizer } from 'utils/security/htmlSanitizer';
 
 export function SubmitStep() {
-  const dispatch = useAppDispatch();
-
   const {
     jobPosition,
     team,
@@ -61,7 +60,9 @@ export function SubmitStep() {
           </Box>
           <Box sx={{ width: '100%' }}>
             <Typography variant="caption">{'Job Description'}</Typography>
-            <Typography variant="body1">{jobDescription}</Typography>
+            <Typography variant="body1">
+              {htmlSanitizer(jobDescription || '')}
+            </Typography>
           </Box>
         </Box>
       </Section>
