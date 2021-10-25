@@ -5,24 +5,25 @@ export const steps: Step[] = [
     id: '16243123461969',
     label: 'Details',
     tip: {
-      title: 'Tip 1',
-      description: 'This is a tip for Details'
+      title: 'Fill the job requisition details',
+      description:
+        'This is where you fill in all the basic details about the job requisition'
     }
   },
   {
     id: '16243123461970',
     label: 'Reason',
     tip: {
-      title: 'Tip 2',
-      description: 'This is a tip for Reason'
+      title: 'Explain your reasons',
+      description: 'Why do you need this new job position?'
     }
   },
   {
     id: '16243123461971',
     label: 'Posting',
     tip: {
-      title: 'Tip 3',
-      description: 'This is a tip for Posting'
+      title: 'Fill the job posting',
+      description: 'This is how it will be seen by applicants.'
     }
   },
   {
