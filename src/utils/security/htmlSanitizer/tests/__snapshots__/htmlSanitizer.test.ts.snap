@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`htmlSanitizer Should escape <alert> malicious code 1`] = `
+<div>
+  <div>
+    &lt;script&gt;alert("xss")&lt;/script&gt;
+  </div>
+</div>
+`;
+
+exports[`htmlSanitizer Should not escape <a> 1`] = `
+<div>
+  <div>
+    <a
+      href="https://google.com"
+    >
+      google
+    </a>
+  </div>
+</div>
+`;
