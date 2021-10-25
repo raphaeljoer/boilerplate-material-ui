@@ -8,6 +8,7 @@ export const schema = yup
       .required('Enter a job title'),
     jobDescription: yup
       .string()
+      .min(30, 'The job description must be at least 30 characters')
       .typeError('Enter a valid job description')
       .required('Enter a job description')
   })

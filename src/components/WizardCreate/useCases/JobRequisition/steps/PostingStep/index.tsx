@@ -17,6 +17,7 @@ import { RiArticleLine } from 'react-icons/ri';
 import ReactQuill from 'react-quill';
 import * as Quill from 'quill';
 import 'react-quill/dist/quill.snow.css';
+import { toolbarOptions } from './options/react-quill';
 
 const adornment = (
   <InputAdornment position="end">
@@ -60,6 +61,7 @@ export function PostingStep() {
 
   const handleChangeReactQuill: ReactQuillOnChange = useCallback(
     async (content) => {
+      console.log(content);
       const id = 'jobDescription';
       // FIXME: ReactQuill have a bug: When you delete the last character,
       // it will return a string with a <p><br></p> so I create a workAround
@@ -93,7 +95,7 @@ export function PostingStep() {
           InputProps={{ endAdornment: adornment }}
           error={!!errors.jobTitle}
           helperText={errors.jobTitle?.message}
-          onBlur={handleChangeInput}
+          onChange={handleChangeInput}
         />
       </Section>
       <Section
@@ -105,6 +107,12 @@ export function PostingStep() {
           theme="snow"
           value={posting.jobDescription || ''}
           onChange={handleChangeReactQuill}
+          defaultValue=""
+          modules={{
+            toolbar: {
+              container: toolbarOptions
+            }
+          }}
           style={{ width: '100%' }}
         />
         {errors.jobDescription?.message && (
