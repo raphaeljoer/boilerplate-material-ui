@@ -25,33 +25,34 @@ export namespace content {
     display: 'grid',
     height: '100%',
     width: '100%',
-    gridTemplateColumns: 'auto 1fr auto',
+    gridTemplateColumns: { xs: '1fr auto', md: 'auto 1fr auto' },
     gridTemplateRows: '1fr',
-    gridTemplateAreas: `"left center right"`,
-    gap: 2
+    gridTemplateAreas: { xs: `"center right"`, md: `"left center right"` }
   };
 
   export const left: SxProps<Theme> = {
     gridArea: 'left',
-    display: 'flex',
+    display: { xs: 'none', md: 'flex' },
     flexDirection: 'column',
     maxWidth: '12.5rem',
     gap: 4,
     mt: 4,
-    ml: 2
+    mx: 2
   };
 
   export const main: SxProps<Theme> = {
+    gridArea: 'center',
     display: 'flex',
     flexDirection: 'column',
     rowGap: 4,
-    mt: 4
+    mt: 4,
+    mx: 2
   };
 
   export const right: SxProps<Theme> = {
     gridArea: 'right',
     mt: 4,
-    mr: 2
+    mx: 2
   };
 }
 
