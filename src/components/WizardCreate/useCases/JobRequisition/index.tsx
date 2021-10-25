@@ -14,7 +14,7 @@ import {
 } from 'store/slices/WizardCreate/useCases/jobReqWizardCreate';
 //steps
 import { DetailsStep } from './steps/DetailsStep';
-import { ReasonStep } from './steps/Reason';
+import { ReasonStep } from './steps/ReasonStep';
 //data
 import { steps } from './data/samples/steps';
 //types
