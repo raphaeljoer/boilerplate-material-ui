@@ -16,7 +16,7 @@ import {
 import { DetailsStep } from './steps/DetailsStep';
 import { ReasonStep } from './steps/Reason';
 //data
-import { steps } from '../data/samples/steps';
+import { steps } from './data/samples/steps';
 //types
 
 type Props = {

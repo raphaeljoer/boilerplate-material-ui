@@ -2,7 +2,7 @@
 import { TextField } from '@mui/material';
 //resources
 import React, { useCallback, useEffect } from 'react';
-import { Section } from '../../../../../presentation/components';
+import { Section } from '../../../../presentation/components';
 //data
 import { useAppDispatch, useAppSelector } from 'hooks';
 import {

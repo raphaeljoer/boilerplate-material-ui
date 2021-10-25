@@ -1,3 +1,4 @@
+import { InitialWizardCreateState } from 'store/slices/WizardCreate/protocols/initialState';
 import { InputType } from '../../../../../../components/WizardCreate/useCases/JobRequisition/types/InputType';
 
 export type Detail = {
@@ -8,10 +9,7 @@ export type Detail = {
   maxSalary: number | null;
 };
 
-export type InitialState = {
-  activeStep: number;
-  isNextStepAvailable: boolean;
-  isPrevStepAvailable: boolean;
+export type InitialState = InitialWizardCreateState & {
   steps: string[];
   detail: Detail;
   reason: string | null;

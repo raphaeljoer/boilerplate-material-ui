@@ -2,9 +2,9 @@
 import { Autocomplete, Box, InputAdornment, TextField } from '@mui/material';
 //resources
 import React, { useCallback, useEffect } from 'react';
-import { Section } from '../../../../../presentation/components';
+import { Section } from '../../../../presentation/components';
 //data
-import { sampleJobPositions } from '../../../data/samples/jobPositions';
+import { sampleJobPositions } from '../../data/samples/jobPositions';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import {
   jobReqSetDetails,
@@ -12,9 +12,9 @@ import {
 } from 'store/slices/WizardCreate/useCases/jobReqWizardCreate';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { sampleTeams } from '../../../data/samples/teams';
-import { sampleCurrencies } from '../../../data/samples/currencies';
-import { InputType } from '../../../types/InputType';
+import { sampleTeams } from '../../data/samples/teams';
+import { sampleCurrencies } from '../../data/samples/currencies';
+import { InputType } from '../../types/InputType';
 import { schema } from './validations/schema';
 
 const salaryAdornment = <InputAdornment position="end">$</InputAdornment>;
