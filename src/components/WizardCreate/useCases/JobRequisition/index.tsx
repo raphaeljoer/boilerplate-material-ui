@@ -15,6 +15,7 @@ import {
 //steps
 import { DetailsStep } from './steps/DetailsStep';
 import { ReasonStep } from './steps/ReasonStep';
+import { PostingStep } from './steps/PostingStep';
 //data
 import { steps } from './data/samples/steps';
 //types
@@ -49,6 +50,7 @@ export function JobReqWizardCreate({ sx }: Props) {
     >
       <DetailsStep />
       <ReasonStep />
+      <PostingStep />
     </WizardCreate>
   );
 }

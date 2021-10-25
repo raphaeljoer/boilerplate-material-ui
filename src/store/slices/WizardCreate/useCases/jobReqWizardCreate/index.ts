@@ -1,7 +1,7 @@
 //redux
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 //types
-import { Detail, InitialState } from './types';
+import { Detail, Posting, InitialState } from './types';
 
 const initialState: InitialState = {
   activeStep: 0,
@@ -17,7 +17,11 @@ const initialState: InitialState = {
     minExperience: null,
     maxExperience: null
   },
-  reason: null
+  reason: null,
+  posting: {
+    jobTitle: null,
+    jobDescription: null
+  }
 };
 
 export const jobReqWizardCreateSlice = createSlice({
@@ -43,6 +47,9 @@ export const jobReqWizardCreateSlice = createSlice({
     },
     jobReqSetReason: (draft, action: PayloadAction<string>) => {
       draft.reason = action.payload;
+    },
+    jobReqSetPosting: (draft, action: PayloadAction<Posting>) => {
+      draft.posting = action.payload;
     }
   }
 });
@@ -53,7 +60,8 @@ export const {
   jobReqToggleNextStepAvailable,
   jobReqTogglePrevStepAvailable,
   jobReqSetDetails,
-  jobReqSetReason
+  jobReqSetReason,
+  jobReqSetPosting
 } = jobReqWizardCreateSlice.actions;
 
 export const jobReqWizardCreateReducer = jobReqWizardCreateSlice.reducer;

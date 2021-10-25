@@ -3,7 +3,7 @@
 exports[`<Home /> should render the Home view 1`] = `
 <div>
   <div
-    class="MuiGrid-root css-owc4l4-MuiGrid-root"
+    class="MuiGrid-root css-lim4ft-MuiGrid-root"
     id="layout"
   >
     <header

@@ -11,8 +11,14 @@ export type Detail = {
   maxExperience: number | null;
 };
 
+export type Posting = {
+  jobTitle: string | null;
+  jobDescription: string | null;
+};
+
 export type InitialState = InitialWizardCreateState & {
   steps: string[];
   detail: Detail;
   reason: string | null;
+  posting: Posting;
 };

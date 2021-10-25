@@ -3,7 +3,7 @@
 exports[`<Wizard /> Should render the Wizard view 1`] = `
 <div>
   <div
-    class="MuiGrid-root css-owc4l4-MuiGrid-root"
+    class="MuiGrid-root css-lim4ft-MuiGrid-root"
     id="layout"
   >
     <header
@@ -319,16 +319,16 @@ exports[`<Wizard /> Should render the Wizard view 1`] = `
       class="MuiBox-root css-co44wc"
     >
       <div
-        class="MuiGrid-root css-1xbtn08-MuiGrid-root"
+        class="MuiGrid-root css-1dr0j57-MuiGrid-root"
       >
         <div
           class="MuiBox-root css-1ew87j3"
         >
           <div
-            class="MuiGrid-root css-4apewa-MuiGrid-root"
+            class="MuiGrid-root css-187fuu0-MuiGrid-root"
           >
             <div
-              class="MuiBox-root css-1nc73af"
+              class="MuiBox-root css-obrs9t"
             >
               <div>
                 <h4
@@ -365,17 +365,17 @@ exports[`<Wizard /> Should render the Wizard view 1`] = `
                 <h6
                   class="MuiTypography-root MuiTypography-h6 css-rfxfpm-MuiTypography-root"
                 >
-                  Tip 1
+                  Fill the job requisition details
                 </h6>
                 <p
                   class="MuiTypography-root MuiTypography-body2 css-1ensqcr-MuiTypography-root"
                 >
-                  This is a tip for Details
+                  This is where you fill in all the basic details about the job requisition
                 </p>
               </div>
             </div>
             <div
-              class="MuiBox-root css-199tkd6"
+              class="MuiBox-root css-j13n78"
             >
               <div
                 class="MuiBox-root css-cexdvi"
@@ -747,9 +747,125 @@ exports[`<Wizard /> Should render the Wizard view 1`] = `
                   </div>
                 </div>
               </div>
+              <div
+                class="MuiBox-root css-cexdvi"
+              >
+                <div
+                  class="MuiBox-root css-h39n4b"
+                >
+                  <h6
+                    class="MuiTypography-root MuiTypography-h6 css-bau04t-MuiTypography-root"
+                  >
+                    Experience
+                  </h6>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 css-1ensqcr-MuiTypography-root"
+                  >
+                    Enter the experience range (in years) required for this job
+                  </p>
+                </div>
+                <div
+                  class="MuiBox-root css-rqhibd"
+                >
+                  <div
+                    class="MuiBox-root css-hboir5"
+                  >
+                    <div
+                      class="MuiFormControl-root MuiTextField-root css-1g1iitx-MuiFormControl-root-MuiTextField-root"
+                    >
+                      <label
+                        class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-5nsajl-MuiFormLabel-root-MuiInputLabel-root"
+                        data-shrink="false"
+                        for="minExperience"
+                        id="minExperience-label"
+                      >
+                        Min Experience
+                      </label>
+                      <div
+                        class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-lsl46j-MuiInputBase-root-MuiOutlinedInput-root"
+                      >
+                        <input
+                          aria-invalid="false"
+                          class="MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
+                          id="minExperience"
+                          min="1"
+                          type="number"
+                          value=""
+                        />
+                        <div
+                          class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeMedium css-1laqsz7-MuiInputAdornment-root"
+                        >
+                          <p
+                            class="MuiTypography-root MuiTypography-body1 css-1h1un4w-MuiTypography-root"
+                          >
+                            years
+                          </p>
+                        </div>
+                        <fieldset
+                          aria-hidden="true"
+                          class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+                        >
+                          <legend
+                            class="css-dhh0px"
+                          >
+                            <span>
+                              Min Experience
+                            </span>
+                          </legend>
+                        </fieldset>
+                      </div>
+                    </div>
+                    <div
+                      class="MuiFormControl-root MuiTextField-root css-1u676ng-MuiFormControl-root-MuiTextField-root"
+                    >
+                      <label
+                        class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-5nsajl-MuiFormLabel-root-MuiInputLabel-root"
+                        data-shrink="false"
+                        for="maxExperience"
+                        id="maxExperience-label"
+                      >
+                        Max Experience
+                      </label>
+                      <div
+                        class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-lsl46j-MuiInputBase-root-MuiOutlinedInput-root"
+                      >
+                        <input
+                          aria-invalid="false"
+                          class="MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
+                          id="maxExperience"
+                          min="1"
+                          type="number"
+                          value=""
+                        />
+                        <div
+                          class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeMedium css-1laqsz7-MuiInputAdornment-root"
+                        >
+                          <p
+                            class="MuiTypography-root MuiTypography-body1 css-1h1un4w-MuiTypography-root"
+                          >
+                            years
+                          </p>
+                        </div>
+                        <fieldset
+                          aria-hidden="true"
+                          class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+                        >
+                          <legend
+                            class="css-dhh0px"
+                          >
+                            <span>
+                              Max Experience
+                            </span>
+                          </legend>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div
-              class="MuiBox-root css-6hrvdv"
+              class="MuiBox-root css-ecrq3f"
             >
               <div
                 class="MuiStepper-root MuiStepper-vertical css-9tmuzo-MuiStepper-root"
@@ -935,7 +1051,7 @@ exports[`<Wizard /> Should render the Wizard view 1`] = `
           class="MuiBox-root css-148vlbf"
         >
           <div
-            class="MuiBox-root css-hf4zay"
+            class="MuiBox-root css-wz397r"
           >
             <button
               class="MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButtonBase-root Mui-disabled css-i7mank-MuiButtonBase-root-MuiButton-root"
@@ -943,16 +1059,52 @@ exports[`<Wizard /> Should render the Wizard view 1`] = `
               tabindex="-1"
               type="button"
             >
+              <span
+                class="MuiButton-startIcon MuiButton-iconSizeLarge css-vpap0f-MuiButton-startIcon"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  data-testid="ArrowBackOutlinedIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+                  />
+                </svg>
+              </span>
               Previous
             </button>
-            <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButtonBase-root Mui-disabled css-i7mank-MuiButtonBase-root-MuiButton-root"
-              disabled=""
-              tabindex="-1"
-              type="button"
+            <div
+              aria-label="You must fill all the required fields"
+              class=""
+              data-mui-internal-clone-element="true"
             >
-              Continue
-            </button>
+              <button
+                class="MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButtonBase-root Mui-disabled css-i7mank-MuiButtonBase-root-MuiButton-root"
+                disabled=""
+                tabindex="-1"
+                type="button"
+              >
+                Continue
+                <span
+                  class="MuiButton-endIcon MuiButton-iconSizeLarge css-4egbtc-MuiButton-endIcon"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                    data-testid="ArrowForwardOutlinedIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="m12 4-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z"
+                    />
+                  </svg>
+                </span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
