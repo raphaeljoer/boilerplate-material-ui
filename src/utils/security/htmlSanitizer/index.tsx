@@ -1,10 +1,16 @@
 import React from 'react';
-// import dompurify from 'dompurify';
 import xss from 'xss';
+import { whiteList } from './options/whiteList';
+
+export const strSanitizer = (html: string): string => {
+  if (!html) return '';
+  if (typeof html !== 'string') return '';
+  return xss(html, { whiteList });
+};
 
 export const htmlSanitizer = (html: string): JSX.Element => {
-  if (!html) return <div />;
-  return <div dangerouslySetInnerHTML={{ __html: xss(html) }} />;
+  if (!html) return <span />;
+  return <span dangerouslySetInnerHTML={{ __html: strSanitizer(html) }} />;
 };
 
 /*
