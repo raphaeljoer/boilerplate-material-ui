@@ -16,7 +16,7 @@ const customRender = (
 ) => render(ui, { wrapper: WrapperProvider, ...options });
 
 export * from '@testing-library/react';
-export { customRender as render };
+export { customRender as renderWithProviders };
 
 /*
  *  Custom Render Documentation
