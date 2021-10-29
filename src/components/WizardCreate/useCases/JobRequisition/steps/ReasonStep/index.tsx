@@ -5,13 +5,11 @@ import React, { useCallback, useEffect } from 'react';
 import { Section } from '../../../../presentation/components';
 //data
 import { useAppDispatch, useAppSelector } from 'hooks';
-import {
-  jobReqSetReason,
-  jobReqToggleNextStepAvailable
-} from 'store/slices/WizardCreate/useCases/jobReqWizardCreate';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from './validations/schema';
+import { jobReqControlSetNextStepAvailable } from 'store/slices/WizardCreate/useCases/jobReqWizardCreate/control';
+import { jobReqDataSetReason } from 'store/slices/WizardCreate/useCases/jobReqWizardCreate/data';
 
 type InputOnChange = (
   e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
@@ -20,22 +18,22 @@ type InputOnChange = (
 
 export function ReasonStep() {
   const {
-    clearErrors,
     setValue,
     trigger,
     formState: { errors }
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({
+    resolver: yupResolver(schema)
+  });
 
   const dispatch = useAppDispatch();
-
-  const reason = useAppSelector((s) => s.jobReqWizardCreate.reason);
+  const reason = useAppSelector((s) => s.wizardCreate.jobReq.data.reason);
 
   const handleChangeInput: InputOnChange = useCallback(
     async (e) => {
       const id = e.target.id;
       const value = e.target.value;
       setValue(id, value);
-      dispatch(jobReqSetReason(value));
+      dispatch(jobReqDataSetReason(value));
       await trigger(id);
     },
     [dispatch, setValue, trigger]
@@ -44,12 +42,8 @@ export function ReasonStep() {
   useEffect(() => {
     const isNull = !reason;
     const hasErrors = Object.values(errors).length !== 0;
-    dispatch(jobReqToggleNextStepAvailable(!isNull && !hasErrors));
+    dispatch(jobReqControlSetNextStepAvailable(!isNull && !hasErrors));
   });
-
-  useEffect(() => {
-    clearErrors();
-  }, [clearErrors]);
 
   return (
     <Section
@@ -59,14 +53,15 @@ export function ReasonStep() {
       <TextField
         id="reason"
         label="Reason"
+        fullWidth
         multiline
+        focused
         minRows={6}
         type="text"
-        sx={{ width: '100%' }}
-        onChange={handleChangeInput}
         defaultValue={reason}
         helperText={errors.reason?.message}
         error={!!errors.reason}
+        onChange={handleChangeInput}
       />
     </Section>
   );

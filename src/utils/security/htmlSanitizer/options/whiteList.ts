@@ -1,4 +1,4 @@
-import { IWhiteList } from "xss";
+import { IWhiteList } from 'xss';
 
 export const whiteList: IWhiteList = {
   // a: ['href', 'title', 'target'],
@@ -37,10 +37,10 @@ export const whiteList: IWhiteList = {
   th: [],
   thead: [],
   tr: [],
-  ul: [],
+  ul: []
 };
 
 /*
-* # Options Doc
-* https://jsxss.com/en/options.htmlSanitizer
-*/
+ * # Options Doc
+ * https://jsxss.com/en/options.htmlSanitizer
+ */

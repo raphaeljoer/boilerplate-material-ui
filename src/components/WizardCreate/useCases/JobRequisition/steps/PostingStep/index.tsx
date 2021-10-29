@@ -5,10 +5,6 @@ import React, { useCallback, useEffect } from 'react';
 import { Section } from '../../../../presentation/components';
 //data
 import { useAppDispatch, useAppSelector } from 'hooks';
-import {
-  jobReqSetPosting,
-  jobReqToggleNextStepAvailable
-} from 'store/slices/WizardCreate/useCases/jobReqWizardCreate';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from './validations/schema';
@@ -18,6 +14,8 @@ import ReactQuill from 'react-quill';
 import * as Quill from 'quill';
 import 'react-quill/dist/quill.snow.css';
 import { toolbarOptions } from './options/react-quill';
+import { jobReqDataSetPosting } from 'store/slices/WizardCreate/useCases/jobReqWizardCreate/data';
+import { jobReqControlSetNextStepAvailable } from 'store/slices/WizardCreate/useCases/jobReqWizardCreate/control';
 
 const adornment = (
   <InputAdornment position="end">
@@ -42,18 +40,20 @@ export function PostingStep() {
     setValue,
     trigger,
     formState: { errors }
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({
+    resolver: yupResolver(schema)
+  });
 
   const dispatch = useAppDispatch();
 
-  const posting = useAppSelector((s) => s.jobReqWizardCreate.posting);
+  const posting = useAppSelector((s) => s.wizardCreate.jobReq.data.posting);
 
   const handleChangeInput: InputOnChange = useCallback(
     async (e) => {
       const id = e.target.id;
       const value = e.target.value;
       setValue(id, value);
-      dispatch(jobReqSetPosting({ ...posting, [id]: value }));
+      dispatch(jobReqDataSetPosting({ ...posting, [id]: value }));
       await trigger(id);
     },
     [dispatch, posting, setValue, trigger]
@@ -61,15 +61,16 @@ export function PostingStep() {
 
   const handleChangeReactQuill: ReactQuillOnChange = useCallback(
     async (content) => {
-      console.log(content);
       const id = 'jobDescription';
+
       // FIXME: ReactQuill have a bug: When you delete the last character,
-      // it will return a string with a <p><br></p> so I create a workAround
+      // it will return a string with <p><br></p> so I create a workAround
       // you can probably solve this in validations schema;
+
       const workAround = content === '<p><br></p>' ? null : content;
       const value = workAround;
       setValue(id, value);
-      dispatch(jobReqSetPosting({ ...posting, [id]: value }));
+      dispatch(jobReqDataSetPosting({ ...posting, [id]: value }));
       await trigger(id);
     },
     [dispatch, posting, setValue, trigger]
@@ -78,7 +79,7 @@ export function PostingStep() {
   useEffect(() => {
     const hasNullValues = Object.values(posting).includes(null);
     const hasErrors = Object.values(errors).length !== 0;
-    dispatch(jobReqToggleNextStepAvailable(!hasNullValues && !hasErrors));
+    dispatch(jobReqControlSetNextStepAvailable(!hasNullValues && !hasErrors));
   });
 
   return (
@@ -92,6 +93,8 @@ export function PostingStep() {
           type="text"
           label="Job Title"
           fullWidth
+          focused
+          defaultValue={posting.jobTitle}
           InputProps={{ endAdornment: adornment }}
           error={!!errors.jobTitle}
           helperText={errors.jobTitle?.message}
@@ -108,11 +111,8 @@ export function PostingStep() {
           value={posting.jobDescription || ''}
           onChange={handleChangeReactQuill}
           defaultValue=""
-          modules={{
-            toolbar: {
-              container: toolbarOptions
-            }
-          }}
+          scrollingContainer="body"
+          modules={{ toolbar: { container: toolbarOptions } }}
           style={{ width: '100%' }}
         />
         {errors.jobDescription?.message && (

@@ -1,24 +1,28 @@
 //material-ui
 import { Typography } from '@mui/material';
+import { ITip } from 'components/WizardCreate/types/tip';
 //resources
 import React from 'react';
 import { RiLightbulbLine } from 'react-icons/ri';
-import { Step } from '../../../types/step';
+import { useAppSelector } from 'hooks';
 
 type Props = {
-  steps: Step[];
-  activeStep: number;
+  tips: ITip[];
 };
 
-export function Tip({ steps, activeStep }: Props) {
+export function Tip({ tips }: Props) {
+  const activeStep = useAppSelector(
+    (s) => s.wizardCreate.jobReq.control.activeStep
+  );
+
   return (
     <div>
       <RiLightbulbLine size="24" />
       <Typography variant="h6" mb={1}>
-        {steps[activeStep].tip.title}
+        {tips[activeStep].title}
       </Typography>
       <Typography color="text.secondary" variant="body2">
-        {steps[activeStep].tip.description}
+        {tips[activeStep].description}
       </Typography>
     </div>
   );

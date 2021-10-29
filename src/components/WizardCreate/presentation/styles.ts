@@ -11,11 +11,14 @@ export const grid: SxProps<Theme> = {
   gridTemplateAreas: `"main""footer"`
 };
 
-export const main: SxProps<Theme> = {
+export const container: SxProps<Theme> = {
   gridArea: 'main',
   height: '100%',
   width: '100%',
-  overflow: 'scroll',
+  overflow: 'scroll'
+};
+
+export const main: SxProps<Theme> = {
   maxWidth: (theme) => theme.breakpoints.values.lg,
   mx: 'auto'
 };
@@ -51,7 +54,8 @@ export namespace content {
     gridArea: 'center',
     display: 'flex',
     flexDirection: 'column',
-    rowGap: 4,
+    rowGap: 3,
+    pb: 4,
     mt: 4,
     mx: 2
   };

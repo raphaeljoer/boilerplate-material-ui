@@ -1,5 +1,6 @@
 //material-ui
-import { Box, Typography } from '@mui/material';
+import { Box, Theme, Typography } from '@mui/material';
+import { SxProps } from '@mui/system';
 //resources
 import React from 'react';
 //styles
@@ -9,9 +10,10 @@ type Props = {
   title: string;
   description?: string;
   children: JSX.Element | JSX.Element[];
+  sxBody?: SxProps<Theme>;
 };
 
-export function Section({ title, description, children }: Props) {
+export function Section({ title, description, sxBody, children }: Props) {
   return (
     <Box sx={styles.container}>
       <Box sx={styles.header}>
@@ -20,7 +22,7 @@ export function Section({ title, description, children }: Props) {
           {description}
         </Typography>
       </Box>
-      <Box sx={styles.body}>{children}</Box>
+      <Box sx={{ ...styles.body, ...sxBody }}>{children}</Box>
     </Box>
   );
 }

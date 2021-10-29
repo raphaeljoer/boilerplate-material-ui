@@ -1,21 +1,27 @@
 //material-ui
-import { Autocomplete, Box, InputAdornment, TextField } from '@mui/material';
+import { Box, InputAdornment, TextField } from '@mui/material';
 //resources
 import React, { useCallback, useEffect } from 'react';
-import { Section } from '../../../../presentation/components';
-//data
-import { sampleJobPositions } from '../../data/samples/jobPositions';
-import { useAppDispatch, useAppSelector } from 'hooks';
-import {
-  jobReqSetDetails,
-  jobReqToggleNextStepAvailable
-} from 'store/slices/WizardCreate/useCases/jobReqWizardCreate';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+//core-components
+import { Section } from '../../../../presentation/components';
+//samples
 import { sampleTeams } from '../../data/samples/teams';
 import { sampleCurrencies } from '../../data/samples/currencies';
+import { sampleJobPositions } from '../../data/samples/jobPositions';
+//hooks
+import { useAppDispatch, useAppSelector } from 'hooks';
+//reducers
+import { jobReqDataSetDetails } from 'store/slices/WizardCreate/useCases/jobReqWizardCreate/data';
+import { jobReqControlSetNextStepAvailable } from 'store/slices/WizardCreate/useCases/jobReqWizardCreate/control';
+//types
 import { InputType } from '../../types/InputType';
-import { schema } from './validations/schema';
+import { schema } from './validations';
+import { AddButton } from './components/AddButton';
+import { Autocomplete } from './components/Autocomplete';
+import { Info } from 'components/WizardCreate/components/Info';
+import { sampleJobPositionDetails } from '../../data/samples/jobPositionDetails';
 
 const salaryAdornment = <InputAdornment position="end">$</InputAdornment>;
 
@@ -35,40 +41,50 @@ type InputOnChange = (
 ) => void;
 
 export function DetailsStep() {
+  const detail = useAppSelector((s) => s.wizardCreate.jobReq.data.detail);
+
   const {
     setValue,
     trigger,
     formState: { errors }
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({
+    resolver: yupResolver(
+      schema({
+        minSalary: detail.minSalary,
+        minExperience: detail.minExperience
+      })
+    )
+  });
 
   const dispatch = useAppDispatch();
 
-  const detail = useAppSelector((s) => s.jobReqWizardCreate.detail);
-
+  //TODO: This logic can potentially be encapsulated to be reused
   const handleChangeAutocomplete: AutocompleteOnChange<InputType> = useCallback(
-    async (e, input, id) => {
+    async (_, input, id) => {
       setValue(id, input);
-      dispatch(jobReqSetDetails({ ...detail, [id]: input }));
+      dispatch(jobReqDataSetDetails({ ...detail, [id]: input }));
       await trigger(id);
     },
     [detail, dispatch, setValue, trigger]
   );
 
+  //TODO: This logic can potentially be encapsulated to be reused
   const handleChangeInput: InputOnChange = useCallback(
     async (e) => {
       const id = e.target.id;
       const value = e.target.value;
       setValue(id, value);
-      dispatch(jobReqSetDetails({ ...detail, [id]: value }));
+      dispatch(jobReqDataSetDetails({ ...detail, [id]: value }));
       await trigger(id);
     },
     [detail, dispatch, setValue, trigger]
   );
 
+  //TODO: This logic can potentially be encapsulated to be reused
   useEffect(() => {
     const hasNullValues = Object.values(detail).includes(null);
     const hasErrors = Object.values(errors).length !== 0;
-    dispatch(jobReqToggleNextStepAvailable(!hasNullValues && !hasErrors));
+    dispatch(jobReqControlSetNextStepAvailable(!hasNullValues && !hasErrors));
   });
 
   return (
@@ -79,26 +95,49 @@ export function DetailsStep() {
         title="Position"
         description="Select the job position related to this job requisition"
       >
-        <Box sx={{ display: 'flex', width: '100%' }}>
-          <Autocomplete
-            id="jobPosition" //Don't change this id
-            disablePortal
-            options={sampleJobPositions}
-            sx={{ width: '100%' }}
-            defaultValue={detail.jobPosition}
-            renderInput={(params) => (
-              <TextField
-                label="Job Position"
-                error={!!errors.jobPosition}
-                helperText={errors.jobPosition?.message}
-                {...params}
+        <>
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            <Autocomplete
+              id="jobPosition" //Don't change this id
+              label="Job Position"
+              options={sampleJobPositions}
+              value={detail.jobPosition}
+              errors={errors}
+              sx={{ flex: 1 }}
+              onChange={handleChangeAutocomplete}
+            />
+            <AddButton tip="Import job positions" to="/import/job-positions" />
+          </Box>
+          {detail.jobPosition && (
+            <Box sx={{ mt: 2, mr: 8 }}>
+              <Info
+                caption="Job Position"
+                title={sampleJobPositionDetails.external_job_title}
               />
-            )}
-            onChange={(e, input) =>
-              handleChangeAutocomplete(e, input, 'jobPosition')
-            }
-          />
-        </Box>
+              <Info
+                caption="Internal Job Title"
+                title={sampleJobPositionDetails.internal_job_title}
+              />
+              <Info
+                caption="External Job Title"
+                title={sampleJobPositionDetails.external_job_title}
+              />
+              <Info
+                caption="Description"
+                title={sampleJobPositionDetails.description}
+              />
+              <Info caption="Type" title={sampleJobPositionDetails.type} />
+              <Info
+                caption="Cost Center"
+                title={sampleJobPositionDetails.cost_center}
+              />
+              <Info
+                caption="Required Travel"
+                title={sampleJobPositionDetails.required_travel ? 'Yes' : 'No'}
+              />
+            </Box>
+          )}
+        </>
       </Section>
 
       {/* TEAM */}
@@ -107,22 +146,18 @@ export function DetailsStep() {
         title="Team"
         description="Select the team for which you want to create this job requisition"
       >
-        <Autocomplete
-          id="team" //Don't change this id
-          disablePortal
-          options={sampleTeams}
-          sx={{ width: '100%' }}
-          defaultValue={detail.team}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Team"
-              error={!!errors.team}
-              helperText={errors.team?.message}
-            />
-          )}
-          onChange={(e, input) => handleChangeAutocomplete(e, input, 'team')}
-        />
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          <Autocomplete
+            id="team" //Don't change this id
+            label="Team"
+            options={sampleTeams}
+            value={detail.team}
+            errors={errors}
+            sx={{ flex: 1 }}
+            onChange={handleChangeAutocomplete}
+          />
+          <AddButton tip="Import teams" to="/import/employees" />
+        </Box>
       </Section>
 
       {/* SALARY */}
@@ -134,21 +169,12 @@ export function DetailsStep() {
         <Box sx={{ display: 'flex', width: '100%' }}>
           <Autocomplete
             id="currency" //Don't change this id
-            disablePortal
+            label="Currency"
             options={sampleCurrencies}
+            value={detail.currency}
+            errors={errors}
             sx={{ width: '20%' }}
-            defaultValue={detail.currency}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Currency"
-                error={!!errors.currency}
-                helperText={errors.currency?.message}
-              />
-            )}
-            onChange={(e, input) =>
-              handleChangeAutocomplete(e, input, 'currency')
-            }
+            onChange={handleChangeAutocomplete}
           />
           <TextField
             id="minSalary" //Don't change this id
@@ -172,7 +198,7 @@ export function DetailsStep() {
             InputProps={{
               endAdornment: salaryAdornment,
               inputProps: {
-                min: detail?.minSalary || 0 + 100,
+                min: (Number(detail?.minSalary) || 100) + 100,
                 step: 100
               }
             }}
@@ -190,31 +216,33 @@ export function DetailsStep() {
         title="Experience"
         description="Enter the experience range (in years) required for this job"
       >
-        <Box sx={{ display: 'flex', width: '100%' }}>
+        <Box sx={{ display: 'flex', width: '100%', gap: 2 }}>
           <TextField
             id="minExperience" //Don't change this id
             label="Min Experience"
-            sx={{ width: '50%' }}
-            helperText={errors.minExperience?.message}
-            error={!!errors.minExperience}
+            fullWidth
             type="number"
             InputProps={{
               endAdornment: experienceAdornment,
               inputProps: { min: 1 }
             }}
+            defaultValue={detail.minExperience}
+            error={!!errors.minExperience}
+            helperText={errors.minExperience?.message}
             onChange={handleChangeInput}
           />
           <TextField
             id="maxExperience" //Don't change this id
             label="Max Experience"
-            sx={{ width: '50%', ml: (theme) => theme.spacing(2) }}
-            helperText={errors.maxExperience?.message}
-            error={!!errors.maxExperience}
+            fullWidth
             type="number"
             InputProps={{
               endAdornment: experienceAdornment,
-              inputProps: { min: detail?.minExperience || 0 + 1 }
+              inputProps: { min: (Number(detail?.minExperience) || 1) + 1 }
             }}
+            defaultValue={detail.maxExperience}
+            error={!!errors.maxExperience}
+            helperText={errors.maxExperience?.message}
             onChange={handleChangeInput}
           />
         </Box>

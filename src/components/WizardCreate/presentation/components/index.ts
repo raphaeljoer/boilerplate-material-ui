@@ -1,4 +1,4 @@
-export * from './Section';
+export * from '../../components/Section';
 export * from './Welcome';
 export * from './Tip';
 export * from './Stepper';

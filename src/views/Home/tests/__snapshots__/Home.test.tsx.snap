@@ -159,7 +159,7 @@ exports[`<Home /> should render the Home view 1`] = `
               </button>
             </a>
             <a
-              href="/reports"
+              href="/wizard"
               style="text-decoration: none;"
             >
               <button
@@ -277,7 +277,7 @@ exports[`<Home /> should render the Home view 1`] = `
               </button>
             </a>
             <a
-              href="/reports"
+              href="/wizard"
               style="text-decoration: none;"
             >
               <button

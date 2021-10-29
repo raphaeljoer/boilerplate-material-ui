@@ -3,50 +3,45 @@ import { Box, Grid, Theme } from '@mui/material';
 import { SxProps } from '@mui/system';
 //resources
 import React from 'react';
+import { useAppSelector } from 'hooks';
 //core-components
 import { Nav, Stepper, Tip, Welcome } from './components';
 //styles
 import * as styles from './styles';
 //types
 import { Step } from '../types/step';
+import { ITip } from '../types/tip';
 
 type Props = {
   sx?: SxProps<Theme>;
   steps: Step[];
-  activeStep: number;
+  tips: ITip[];
   children: JSX.Element[];
-  onNext: () => void;
-  onPrev: () => void;
 };
 
-export function WizardCreate({
-  activeStep,
-  steps,
-  children,
-  sx,
-  onPrev,
-  onNext
-}: Props) {
-  if (!children) {
-    console.warn('You must provide multiple steps for wizard create.');
-    return null;
-  }
+export function WizardCreate({ steps, tips, sx, children }: Props) {
+  const activeStep = useAppSelector(
+    (s) => s.wizardCreate.jobReq.control.activeStep
+  );
+
   return (
     <Grid sx={{ ...styles.grid, ...sx }}>
-      <Box sx={styles.main}>
-        <Grid sx={styles.content.grid}>
-          <Box sx={styles.content.left}>
-            <Welcome />
-            <Tip steps={steps} activeStep={activeStep} />
-          </Box>
-          <Box sx={styles.content.main}>{children[activeStep]}</Box>
-          <Box sx={styles.content.right}>
-            <Stepper steps={steps} activeStep={activeStep} />
-          </Box>
-        </Grid>
+      <Box sx={styles.container}>
+        <Box sx={styles.main}>
+          <Grid sx={styles.content.grid}>
+            <Box sx={styles.content.left}>
+              <Welcome />
+              <Tip tips={tips} />
+            </Box>
+            <Box sx={styles.content.main}>{children[activeStep]}</Box>
+            <Box sx={styles.content.right}>
+              <Stepper steps={steps} />
+            </Box>
+          </Grid>
+        </Box>
       </Box>
       <Box sx={styles.footer}>
-        <Nav onPrev={onPrev} onNext={onNext} />
+        <Nav />
       </Box>
     </Grid>
   );

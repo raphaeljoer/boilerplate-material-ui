@@ -1,55 +1,23 @@
 //material-ui
-import { Box, Button, Theme, Tooltip } from '@mui/material';
-import { SxProps } from '@mui/system';
-import { useAppSelector } from 'hooks';
-import { ArrowForwardOutlined, ArrowBackOutlined } from '@mui/icons-material';
+import { Box } from '@mui/material';
 //resources
 import React from 'react';
 //styles
 import * as styles from './styles';
+import { useAppSelector } from 'hooks';
+import { NavButton } from './components/NavButton';
 
-type Props = {
-  sx?: SxProps<Theme>;
-  onNext?: () => void;
-  onPrev?: () => void;
-};
+export function Nav() {
+  const steps = useAppSelector((s) => s.wizardCreate.jobReq.control.steps);
+  const activeStep = useAppSelector(
+    (s) => s.wizardCreate.jobReq.control.activeStep
+  );
+  const isSubmitStep = steps[activeStep] === 'submit';
 
-export function Nav({ onNext, onPrev, sx }: Props) {
-  const isNextStepAvailable = useAppSelector(
-    (s) => s.jobReqWizardCreate.isNextStepAvailable
-  );
-  const isPrevStepAvailable = useAppSelector(
-    (s) => s.jobReqWizardCreate.isPrevStepAvailable
-  );
-  const nextTip = isNextStepAvailable
-    ? 'continue'
-    : 'You must fill all the required fields';
   return (
-    <Box sx={{ ...styles.content, ...sx }}>
-      <Button
-        variant="contained"
-        size="large"
-        color="secondary"
-        disabled={!isPrevStepAvailable}
-        startIcon={<ArrowBackOutlined />}
-        onClick={onPrev}
-      >
-        Previous
-      </Button>
-      <Tooltip title={nextTip}>
-        <div>
-          <Button
-            variant="contained"
-            size="large"
-            color="secondary"
-            disabled={!isNextStepAvailable}
-            endIcon={<ArrowForwardOutlined />}
-            onClick={onNext}
-          >
-            Continue
-          </Button>
-        </div>
-      </Tooltip>
+    <Box sx={styles.content}>
+      <NavButton variant="prev" />
+      <NavButton variant={isSubmitStep ? 'submit' : 'next'} />
     </Box>
   );
 }

@@ -3,7 +3,6 @@ import { SxProps } from '@mui/system';
 
 export const container: SxProps<Theme> = {
   minHeight: '104px',
-  mb: 2,
   border: 1,
   borderColor: 'grey.300',
   borderRadius: 3,

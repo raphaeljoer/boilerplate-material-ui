@@ -1,5 +1,4 @@
-import { ControlWizardCreateInitialState } from 'store/slices/WizardCreate/protocols/ControlWizardCreateInitialState';
-import { InputType } from '../../../../../../components/WizardCreate/useCases/JobRequisition/types/InputType';
+import { InputType } from '../../../../../../../components/WizardCreate/useCases/JobRequisition/types/InputType';
 
 export type Detail = {
   jobPosition: InputType | null;
@@ -16,8 +15,7 @@ export type Posting = {
   jobDescription: string | null;
 };
 
-export type InitialState = ControlWizardCreateInitialState & {
-  steps: string[];
+export type InitialState = {
   detail: Detail;
   reason: string | null;
   posting: Posting;

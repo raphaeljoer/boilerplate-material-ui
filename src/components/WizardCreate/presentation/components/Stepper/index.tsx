@@ -3,22 +3,30 @@ import { Step, StepLabel, Stepper as MuiStepper } from '@mui/material';
 import { TimelineConnector } from '@mui/lab';
 //resources
 import React from 'react';
+import { useAppSelector } from 'hooks';
 //styles
 import * as styles from './styles';
+//data
 import { Step as IStep } from '../../../types/step';
 
 type Props = {
-  activeStep: number;
   steps: IStep[];
 };
 
-export function Stepper({ steps, activeStep }: Props) {
-  const connector = <TimelineConnector sx={styles.connector} />;
+const connector = <TimelineConnector sx={styles.connector} />;
+
+export function Stepper({ steps }: Props) {
+  const state = useAppSelector((s) => s.wizardCreate.jobReq.control.state);
+  const stepsList = useAppSelector((s) => s.wizardCreate.jobReq.control.steps);
+  const activeStep = useAppSelector(
+    (s) => s.wizardCreate.jobReq.control.activeStep
+  );
+  const isSuccess = state === 'success';
 
   return (
     <MuiStepper
-      activeStep={activeStep}
       orientation="vertical"
+      activeStep={isSuccess ? stepsList.length : activeStep}
       connector={connector}
     >
       {steps.map((s) => (
