@@ -22,7 +22,7 @@ const recruiterMenuItems: MenuItem[] = [
   {
     id: '343ea451-14fd-47b4-9cdc-b898d9170c39',
     label: 'Reports',
-    path: '/reports',
+    path: '/wizard',
     icon: RiDashboard2Line
   }
 ];
@@ -43,7 +43,7 @@ const companyMenuItems: MenuItem[] = [
   {
     id: '343ea451-14fd-47b4-9cdc-b898d9170c39',
     label: 'Reports',
-    path: '/reports',
+    path: '/wizard',
     icon: RiDashboard2Line
   }
 ];

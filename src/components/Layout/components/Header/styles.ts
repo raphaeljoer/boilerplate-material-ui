@@ -1,7 +1,9 @@
-import { SxProps, Theme } from '@mui/system';
+import { Theme } from '@mui/material';
+import { SxProps } from '@mui/system';
 
 export const container: SxProps<Theme> = {
+  display: 'flex',
   p: 2,
-  borderBottom: 1,
-  borderColor: 'grey.300'
+  boxShadow: (theme) => theme.shadows[4],
+  zIndex: (theme) => theme.zIndex.appBar
 };
