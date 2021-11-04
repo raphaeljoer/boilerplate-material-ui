@@ -1,7 +1,8 @@
 export const path = {
   root: '/',
   home: '/home',
-  job_requisition: '/job',
+  job_requisition: '/wizard',
+  applicants: '/pipeline',
   pipeline: '/pipeline',
   wizard: '/wizard'
 };

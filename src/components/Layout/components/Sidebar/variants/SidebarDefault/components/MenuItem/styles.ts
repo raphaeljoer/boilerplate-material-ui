@@ -10,3 +10,17 @@ export const button: SxProps<Theme> = {
     bgcolor: (theme) => lighten(theme.palette.primary.main, opacity)
   }
 };
+
+export const listItem: SxProps<Theme> = {
+  height: 48
+};
+
+export const listItemIcon: SxProps<Theme> = {
+  ml: 1,
+  mr: 3,
+  minWidth: 24
+};
+
+export const listItemText: SxProps<Theme> = {
+  color: 'text.secondary'
+};
