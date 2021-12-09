@@ -1,14 +1,17 @@
 import React from 'react';
-import { Box, BoxProps } from '@mui/material';
+import { Box, Theme } from '@mui/material';
+import { SxProps } from '@material-ui/system';
 import * as styles from './styles';
-import { Head } from './components/Head';
+import { LogoContainer } from 'components/Logo/components/LogoContainer';
 
-type Props = BoxProps;
+type Props = {
+  sx?: SxProps<Theme>;
+};
 
-export function Header({ ...props }: Props) {
+export function Header({ sx }: Props) {
   return (
-    <Box component="header" sx={{ ...styles.container, ...props }}>
-      <Head />
+    <Box component="header" sx={{ ...styles.container, ...sx }}>
+      <LogoContainer />
     </Box>
   );
 }
