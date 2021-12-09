@@ -1,15 +1,15 @@
-import { ButtonProps, lighten } from '@mui/material';
+import { SxProps, Theme } from '@mui/system';
 
-const opacity = 0.92;
+export const listItem: SxProps<Theme> = {
+  height: 48
+};
 
-export const iconButton: ButtonProps = {
-  color: 'primary',
-  size: 'medium',
-  sx: {
-    width: 40,
-    height: 40,
-    ':hover': {
-      bgcolor: (theme) => lighten(theme.palette.primary.main, opacity)
-    }
-  }
+export const listItemIcon: SxProps<Theme> = {
+  ml: 1,
+  mr: 3,
+  minWidth: 24
+};
+
+export const listItemText: SxProps<Theme> = {
+  color: 'text.secondary'
 };

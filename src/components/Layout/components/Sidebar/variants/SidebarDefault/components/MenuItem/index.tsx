@@ -1,28 +1,23 @@
 import React from 'react';
-import { Button, ButtonProps } from '@mui/material';
+import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { MenuItem as Item } from '../../../../types/menu';
-import * as Styles from './styles';
+import * as styles from './styles';
 import { Link } from 'react-router-dom';
 
-type Props = ButtonProps & {
+type Props = {
   item: Item;
 };
 
-export function MenuItem({ item, ...props }: Props) {
+export function MenuItem({ item }: Props) {
   const { label, path, icon: Icon } = item;
   return (
     <Link to={path} style={{ textDecoration: 'none' }}>
-      <Button
-        variant="text"
-        color="primary"
-        size="medium"
-        fullWidth
-        startIcon={<Icon />}
-        sx={Styles.button}
-        {...props}
-      >
-        {label}
-      </Button>
+      <ListItemButton sx={styles.listItem}>
+        <ListItemIcon sx={styles.listItemIcon}>
+          <Icon size={24} />
+        </ListItemIcon>
+        <ListItemText primary={label} sx={styles.listItemText} />
+      </ListItemButton>
     </Link>
   );
 }

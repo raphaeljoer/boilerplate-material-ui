@@ -1,13 +1,17 @@
-import { BoxProps } from '@mui/material/Box';
+import { Theme } from '@mui/material';
+import { SxProps } from '@mui/system';
 
-export const container: BoxProps = {
-  component: 'aside',
-  sx: {
-    alignItems: 'center',
-    width: '5rem',
-    p: 2,
-    bgcolor: 'background.paper',
-    borderRight: 1,
-    borderColor: 'grey.300'
-  }
+export const container: SxProps<Theme> = {
+  width: '5rem',
+  bgcolor: 'background.paper',
+  mt: 3
+};
+
+export const listItem: SxProps<Theme> = {
+  height: 48
+};
+
+export const listItemIcon: SxProps<Theme> = {
+  minWidth: 24,
+  justifyContent: 'center'
 };

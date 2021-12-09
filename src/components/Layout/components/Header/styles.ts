@@ -7,3 +7,10 @@ export const container: SxProps<Theme> = {
   boxShadow: (theme) => theme.shadows[4],
   zIndex: (theme) => theme.zIndex.appBar
 };
+
+export const logo: SxProps<Theme> = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: 2,
+  color: 'text.secondary'
+};

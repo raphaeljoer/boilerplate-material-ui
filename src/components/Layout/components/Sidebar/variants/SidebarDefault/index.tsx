@@ -8,6 +8,7 @@ import * as styles from './styles';
 //entities
 import { Menu } from '../../types/menu';
 import { SxProps } from '@mui/system';
+import { useAppSelector } from 'hooks';
 
 type Props = {
   sx?: SxProps<Theme>;
@@ -15,8 +16,13 @@ type Props = {
 };
 
 export function SidebarDefault({ menu, ...sx }: Props) {
+  const isOpen = useAppSelector((s) => s.sidebar.isOpen);
+
   return (
-    <Box component="aside" sx={{ ...styles.container, ...sx }}>
+    <Box
+      component="aside"
+      sx={{ ...styles.container, ...sx, display: isOpen ? 'block' : 'none' }}
+    >
       <Stack spacing={2}>
         {menu.map((m) => (
           <MenuGroup key={m.id} menu={m} />
